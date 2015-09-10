@@ -1,8 +1,16 @@
 # Hello world!
-To start running, please run this on backend folder:
+On checkout, please run this on the backend folder:
 
 ```
 npm install
-npm install -g grunt-cli
-grunt
+```
+
+Install gulp command
+```
+npm install -g gulp
+```
+
+To run the server, just use:
+```
+gulp
 ```
