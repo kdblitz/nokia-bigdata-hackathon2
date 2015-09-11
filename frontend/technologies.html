@@ -1,22 +1,39 @@
-<div class="row">
   <div class="col-md-4">
-    <input type="checkbox" id="grr" name="my-checkbox" checked> LTE
+    <div class="" data-toggle="buttons">
+      <label class="btn btn-md btn-success active">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked>
+          <i></i>LTE
+      </label>
+      <label class="btn btn-md btn-danger">
+          <input type="radio" name="options" id="option2" autocomplete="off">
+          LTE
+      </label>
+    </div>
     <select></select>
   </div>
   <div class="col-md-4">
-    <input type="checkbox" checked data-toggle="toggle"> WCDMA
+    <div class="" data-toggle="buttons">
+      <label class="btn btn-md btn-success active">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked>
+          WCDMA
+      </label>
+      <label class="btn btn-md btn-danger">
+          <input type="radio" name="options" id="option2" autocomplete="off">
+          WCDMA
+      </label>
+    </div>
     <select></select>
   </div>
   <div class="col-md-4">
-    <input type="checkbox" checked data-toggle="toggle"> GSM
+    <div class="" data-toggle="buttons">
+      <label class="btn btn-md btn-success active">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked>
+          GSM
+      </label>
+      <label class="btn btn-md btn-danger">
+          <input type="radio" name="options" id="option2" autocomplete="off">
+          GSM
+      </label>
+    </div>
     <select></select>
   </div>
-</div>
-
-  <script>
-    $.fn.bootstrapSwitch.defaults.size = 'mini';
-    $(document).ready(function(){
-      console.log($("#grr").length);
-     $("#grr").bootstrapSwitch();
-    });
-  </script>

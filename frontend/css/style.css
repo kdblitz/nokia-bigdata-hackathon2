@@ -33,6 +33,11 @@ html, body, .container {
   background-color: blue;
   height: 100%;
   width: 100%;
+  padding: 0;
+}
+
+.technologies .btn {
+  padding: 6px 2px;
 }
 
 .system-module {
@@ -47,4 +52,24 @@ html, body, .container {
 
 .btn-xs ~ .dropdown-menu {
   font-size:10px;
+}
+
+.technologies .btn.active {                
+	display: none;		
+}
+
+.technologies .btn span:nth-of-type(1)  {            	
+	display: none;
+}
+
+.technologies .btn span:last-child  {            	
+	display: block;		
+}
+
+.technologies .btn.active  span:nth-of-type(1)  {            	
+	display: block;		
+}
+
+.technologies .btn.active span:last-child  {            	
+	display: none;			
 }
