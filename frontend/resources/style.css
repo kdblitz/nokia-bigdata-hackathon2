@@ -11,9 +11,17 @@ html, body, .container-fluid {
   margin: 0px;
 }
 
-.filters {
-  height: 50%;
+.filters{
+  height: 100%;
   padding: 0px;
+}
+
+.row-technologies{
+  height: 25%;
+}
+
+.row-system-module{
+  height: 75%;
 }
 
 .configurations {
