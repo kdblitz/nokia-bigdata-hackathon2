@@ -7,7 +7,7 @@ app.controller('FilterController', function($scope, ConfigurationService){
   $scope.test = 'test';
 });
 
-app.directive('technologies', function(){
+app.directive('technologies', function() {
   return {
     restrict: 'E',
     templateUrl: 'technologies.html'
@@ -19,4 +19,11 @@ app.directive('systemModule', function() {
     restrict: 'E',
     templateUrl: 'systemModule.html'
   };
+});
+
+app.directive('configurations', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'configurations.html'
+  }
 });
