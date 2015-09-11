@@ -3,7 +3,7 @@
 angular.module('configurationSelector',[])
   .service('ConfigurationService', function ConfigurationService() {
     this.getConfigurations = function() {
-      return {
+      return [{
         configId: 'SM_LWG6',
         smMode: {
           gsm: {
@@ -59,6 +59,6 @@ angular.module('configurationSelector',[])
             ]
           }
         ]
-      };
+      }];
     };
   });

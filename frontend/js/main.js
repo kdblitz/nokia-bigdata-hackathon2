@@ -5,6 +5,20 @@ var app = angular.module('configurationSelector');
 app.controller('FilterController', function($scope, ConfigurationService){
   console.log(ConfigurationService.getConfigurations());
   $scope.test = 'test';
+
+  $scope.getSmMainOptions = function() {
+    var configurations = ConfigurationService.getConfigurations();
+    var smMainOptions = [];
+    for( var i = 0; i < configurations.length; i++ )
+    {
+      for( var j = 0; j < configurations[i].smDeployment.length; j++ )
+      {
+        smMainOptions.push( configurations[i].smDeployment[j].fsmf.technology );
+      }
+    }
+    console.log(smMainOptions);
+    return smMainOptions;
+  };
 });
 
 app.directive('technologies', function() {

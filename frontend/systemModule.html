@@ -1,15 +1,24 @@
 <div class="sm-box well" >
   <div class="dropdown">
     <button class="btn-xs btn-default dropdown-toggle"
-      type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      type="button" id="sm-main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       Dropdown
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <ul class="dropdown-menu" aria-labelledby="sm-main">
+      <li ng-repeat="option in getSmMainOptions()"><a href="#">FSMF - {{option}}</a></li>
+    </ul>
+    </br>
+    <!-- <button class="btn-xs btn-default dropdown-toggle"
+      type="button" id="sm-expansion-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="sm-expansion-1">
       <li><a href="#">Action</a></li>
       <li><a href="#">Another action</a></li>
       <li><a href="#">Something else here</a></li>
       <li><a href="#">Separated link</a></li>
-    </ul>
+    </ul> -->
   </div>
 </div>
