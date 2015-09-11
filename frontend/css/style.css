@@ -44,3 +44,7 @@ html, body, .container {
 .sm-box {
   background-color: gray;
 }
+
+.btn-xs ~ .dropdown-menu {
+  font-size:10px;
+}
