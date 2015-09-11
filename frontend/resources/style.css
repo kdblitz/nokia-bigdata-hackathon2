@@ -1,0 +1,38 @@
+
+html, body, .container-fluid {
+  height: 100% !important;
+  width: 100%;
+  padding: 0px;
+}
+
+.row {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+
+.filters {
+  height: 50%;
+  padding: 0px;
+}
+
+.configurations {
+  background-color: gray;
+  height: 100%;
+}
+
+.technologies {
+  background-color: blue;
+  height: 100%;
+  width: 100%;
+}
+
+.system-module {
+  background-color: lightblue;
+  height: 100%;
+  width: 100%;
+}
+
+.sm-box {
+  background-color: gray;
+}
