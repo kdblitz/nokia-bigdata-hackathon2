@@ -6,10 +6,12 @@ app.controller('FilterController', function($scope, ConfigurationService){
   console.log(ConfigurationService.getConfigurations());
   $scope.test = 'test';
 
+  var configurations = ConfigurationService.getConfigurations();
+  var configLen = configurations.length;
+
   $scope.getSmMainOptions = function() {
-    var configurations = ConfigurationService.getConfigurations();
     var smMainOptions = [];
-    for (var i = 0; i < configurations.length; i++ ) {
+    for (var i = 0; i < configLen; i++ ) {
       var deployments = configurations[i].smDeployment;
       for (var j = 0; j < deployments.length; j++ ) {
         smMainOptions.push("FSMF - " + deployments[j].fsmf.technology);
@@ -19,9 +21,8 @@ app.controller('FilterController', function($scope, ConfigurationService){
   };
 
   $scope.getSmExtensionOptions = function() {
-    var configurations = ConfigurationService.getConfigurations();
     var smExpansionOptions = [];
-    for (var i = 0; i < configurations.length; i++) {
+    for (var i = 0; i < configLen; i++) {
       var deployments = configurations[i].smDeployment;
       for (var j = 0; j < deployments.length; j++) {
         var extensionConfigurations = deployments[j].extension;
@@ -34,6 +35,34 @@ app.controller('FilterController', function($scope, ConfigurationService){
     }
     return smExpansionOptions.filter(onlyUnique);
   };
+
+  $scope.getBBCapacityValuesForLTE = function() {
+    return [
+      { bbVal: 0 },
+      { bbVal: 1 },
+      { bbVal: 2 },
+      { bbVal: 3 }
+    ];
+  }
+  $scope.getBBCapacityValuesForWCDMA = function() {
+    return [
+      { bbVal: 0 },
+      { bbVal: 3.5 },
+      { bbVal: 5.5 },
+      { bbVal: 9.5 },
+      { bbVal: 11.5 },
+      { bbVal: 15.5 },
+      { bbVal: 17.5 }
+    ];
+  }
+  $scope.getBBCapacityValuesForGSM = function() {
+    return [
+      { bbVal: 0 },
+      { bbVal: 24 }
+    ];
+  }
+
+
 });
 
 app.directive('technologies', function() {
