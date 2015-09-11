@@ -4,13 +4,16 @@ var $ = require('gulp-load-plugins')();
 
 var FRONTEND_PATH = '../frontend'
 
-gulp.task('connect', function() {
+gulp.task('mongoDbApi', function() {
+
+
+});
+
+gulp.task('connect',['mongoDbApi'], function() {
   var express    = require('express');        // call express
   var app        = express();                 // define our app using express
   var bodyParser = require('body-parser');
-  var mongoose   = require('mongoose');
 
-  //  mongoose.connect('mongodb://localhost/local');
 
   //  var Point     = require('./app/models/point');
 
@@ -50,18 +53,18 @@ gulp.task('watch', function() {
 
   // Watch for changes and notify LR server
   gulp.watch([
-    FRONTEND_PATH + '/*.html',
-    FRONTEND_PATH + '/*.css',
-    FRONTEND_PATH + '/*.js'
+    FRONTEND_PATH + '/**/*.html',
+    FRONTEND_PATH + '/**/*.css',
+    FRONTEND_PATH + '/**/*.js'
   ]).on('change', function (file) {
     $.livereload.changed(file.path);
   });
 
-  gulp.watch(FRONTEND_PATH+'/*.js',['jshint']);
+  gulp.watch(FRONTEND_PATH+'/**/*.js',['jshint']);
 });
 
 gulp.task('jshint', function() {
-  return gulp.src(FRONTEND_PATH+'/*.js')
+  return gulp.src(FRONTEND_PATH+'/js/dev/*.js')
     .pipe($.jshint())
     .pipe($.jshint.reporter(require('jshint-stylish')))
 });
