@@ -5,8 +5,12 @@ var $ = require('gulp-load-plugins')();
 var FRONTEND_PATH = '../frontend'
 
 gulp.task('mongoDbApi', function() {
+  var configurations = require('./app/models/configuration');
 
-
+  //var datadump = "SM_G1,G,1,FSMF,GSM,-,-,-,-,-,,,,,24".split(',');
+  var datadump = "SM_LWG6,LWG,3,FSMF+FBBA+FBBA+FSMF+FBBC+FBBC,WG,WCDMA,WCDMA,LTE,LTE,LTE,,1,1,15.5,24".split(",")
+  var csvConverter = require('./app/models/csvConverter');
+  csvConverter(datadump);
 });
 
 gulp.task('connect',['mongoDbApi'], function() {
