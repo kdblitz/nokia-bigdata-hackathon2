@@ -11,9 +11,17 @@ html, body, .container {
   margin: 0px;
 }
 
-.filters {
-  height: 50%;
+.filters{
+  height: 100%;
   padding: 0px;
+}
+
+.row-technologies{
+  height: 35%;
+}
+
+.row-system-module{
+  height: 65%;
 }
 
 .configurations {
