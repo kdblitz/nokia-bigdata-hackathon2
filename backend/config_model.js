@@ -1,15 +1,15 @@
 {
-  config_id: '',
-  sm_mode: {
+  configId: '',
+  smMode: {
     gsm: {
       enabled:[true|false],
-      bb_capacity:{
+      bbCapacity:{
         trx:[0|24]
       }
     },
     lte: {
       enabled:[true|false],
-      bb_capacity: {
+      bbCapacity: {
         rcs:0|1|2|3,
         bcs:0|1|2|3,
         ecs:0|1|2|3
@@ -17,12 +17,12 @@
     },
     wcdma: {
       enabled:[true|false],
-      bb_capacity: {
+      bbCapacity: {
         su:[5.5|15.5|...],
       }
     }
   },
-  sm_deployment: [
+  smDeployment: [
     {
       fsmf:{
         technology:['GSM'|'LTE'|'WCDMA'],

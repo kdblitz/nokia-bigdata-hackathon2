@@ -1,8 +1,9 @@
+'use strict';
 
 var app = angular.module('configurationSelector');
 
 app.controller('FilterController', function($scope, ConfigurationService){
-  console.log(ConfigurationService.getConfigurations())
+  console.log(ConfigurationService.getConfigurations());
   $scope.test = 'test';
 });
 
