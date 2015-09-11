@@ -4,17 +4,17 @@ angular.module('configurationSelector',[])
   .service('ConfigurationService', function ConfigurationService() {
     this.getConfigurations = function() {
       return {
-        config_id: 'SM_LWG6',
-        sm_mode: {
+        configId: 'SM_LWG6',
+        smMode: {
           gsm: {
             enabled:true,
-            bb_capacity:{
+            bbCapacity:{
               trx:24
             }
           },
           lte: {
             enabled:true,
-            bb_capacity: {
+            bbCapacity: {
               rcs:0,
               bcs:1,
               ecs:1
@@ -22,12 +22,12 @@ angular.module('configurationSelector',[])
           },
           wcdma: {
             enabled:true,
-            bb_capacity: {
+            bbCapacity: {
               su:15.5,
             }
           }
         },
-        sm_deployment: [
+        smDeployment: [
           {
             fsmf:{
               technology:'WCDMA',
@@ -60,5 +60,5 @@ angular.module('configurationSelector',[])
           }
         ]
       };
-    }
+    };
   });
