@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="configurationSelector">
+<html lang="en" ng-app="configurationSelector">
 <head>
-  <link rel="stylesheet" href="resources/bootstrapOcean.min.css">
-  <link rel="stylesheet" href="resources/style.css"
+  <link rel="stylesheet" href="css/bootstrapOcean.min.css">
+  <link rel="stylesheet" href="css/style.css"
 </head>
 <body>
-  <div class="container-fluid" ng-controller="FilterController">
+  <div class="container" ng-controller="FilterController">
     <div class="row">
       <div class="col-md-3 filters">
-        <div class="row">
-          <div class="col-md-12 technologies">
-            <technologies></technologies>
-          </div>
+        <div class="col-md-12 technologies">
+          <technologies></technologies>
         </div>
-        <div class="row">
-          <div class="col-md-12 system-module">
-            <system-module></system-module>
-          </div>
+        <div class="col-md-12 system-module">
+          <system-module></system-module>
         </div>
       </div>
       <div class="col-md-9 configurations">
@@ -24,10 +20,10 @@
       </div>
     </div>
   </div>
-  <script src="resources/jquery.1.11.3.min.js"></script>
-  <script src="resources/bootstrap.3.3.5.min.js"></script>
-  <script src="resources/angular.1.2.20.min.js"></script>
-  <script src="configuration-service.js"></script>
-  <script src="main.js"></script>
+  <script src="js/jquery.1.11.3.min.js"></script>
+  <script src="js/bootstrap.3.3.5.min.js"></script>
+  <script src="js/angular.1.2.20.min.js"></script>
+  <script src="js/configuration-service.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
