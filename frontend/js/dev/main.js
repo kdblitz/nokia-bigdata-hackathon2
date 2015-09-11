@@ -25,5 +25,5 @@ app.directive('configurations', function() {
   return {
     restrict: 'E',
     templateUrl: 'configurations.html'
-  }
+  };
 });
