@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html ng-app="configurationSelector">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <div ng-controller="FilterController">
-	  <technologies></technologies>
-	  <system-module></system-module>
+  <div class="container-fluid" ng-controller="FilterController">
+    <div class="row">
+      <div class="col-md-3 filters">
+        <div class="row">
+          <div class="col-md-12 technologies">
+            <technologies></technologies>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 system-module">
+            <system-module></system-module>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 configurations">
+        <configurations></configurations>
+      </div>
+    </div>
   </div>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.js"></script>
   <script src="main.js"></script>
 </body>
