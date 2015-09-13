@@ -20,11 +20,13 @@ gulp.task('connect',['mongoDbApi'], function() {
   var express    = require('express');        // call express
   var app        = express();                 // define our app using express
   var bodyParser = require('body-parser');
+  var formidable = require('express-formidable');
 
   // configure app to use bodyParser()
   // this will let us get the data from a POST
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.use(formidable.parse());
 
   var port = process.env.PORT || 8080;        // set our port
 
@@ -35,14 +37,18 @@ gulp.task('connect',['mongoDbApi'], function() {
       res.json({ message: 'hooray! welcome to our api!' });
   });
 
-  router.route('/getBbCapacities/:technology')
-    .get(function(req, res){
-      configurations.getBbCapacities(req.params.technology, function(err,bbCapacities) {
-        if (err)
-          res.send(err);
-        res.json(bbCapacities);
-      })
-    });
+  router.post('/upload', function (req, res) {
+    // req.body will contains the parsed body
+    res.json(req.body);
+  });
+
+  router.get('/getBbCapacities/:technology', function(req, res){
+    configurations.getBbCapacities(req.params.technology, function(err,bbCapacities) {
+      if (err)
+        res.send(err);
+      res.json(bbCapacities);
+    })
+  });
 
 
   // REGISTER OUR ROUTES -------------------------------

@@ -19,6 +19,7 @@
     "jshint-stylish": "^2.0.1",
     "mongoose": "~4.1.6",
     "opn": "~3.0.2",
-    "serve-static": "^1.10.0"
+    "serve-static": "^1.10.0",
+    "express-formidable": "~0.1.1"
   }
 }
