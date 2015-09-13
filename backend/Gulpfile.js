@@ -4,22 +4,22 @@ var $ = require('gulp-load-plugins')();
 
 var FRONTEND_PATH = '../frontend'
 
+var configurations;
+
 gulp.task('mongoDbApi', function() {
-  var configurations = require('./app/models/configuration');
+  configurations = require('./app/models/configuration');
+  var csvConverter = require('./app/models/csvConverter')
 
   //var datadump = "SM_G1,G,1,FSMF,GSM,-,-,-,-,-,,,,,24".split(',');
-  var datadump = "SM_LWG6,LWG,3,FSMF+FBBA+FBBA+FSMF+FBBC+FBBC,WG,WCDMA,WCDMA,LTE,LTE,LTE,,1,1,15.5,24".split(",")
-  var csvConverter = require('./app/models/csvConverter');
-  csvConverter(datadump);
+  //var datadump = "SM_LWG6,LWG,3,FSMF+FBBA+FBBA+FSMF+FBBC+FBBC,WG,WCDMA,WCDMA,LTE,LTE,LTE,,1,1,15.5,24".split(",")
+  //var csvConverter = require('./app/models/csvConverter');
+  // csvConverter(datadump)
 });
 
 gulp.task('connect',['mongoDbApi'], function() {
   var express    = require('express');        // call express
   var app        = express();                 // define our app using express
   var bodyParser = require('body-parser');
-
-
-  //  var Point     = require('./app/models/point');
 
   // configure app to use bodyParser()
   // this will let us get the data from a POST
@@ -35,10 +35,14 @@ gulp.task('connect',['mongoDbApi'], function() {
       res.json({ message: 'hooray! welcome to our api!' });
   });
 
-  // router.route('/points')
-  //     .get(function(req, res){
-  //       getAllPoints(req, res);
-  //     });
+  router.route('/getBbCapacities/:technology')
+    .get(function(req, res){
+      configurations.getBbCapacities(req.params.technology, function(err,bbCapacities) {
+        if (err)
+          res.send(err);
+        res.json(bbCapacities);
+      })
+    });
 
 
   // REGISTER OUR ROUTES -------------------------------
