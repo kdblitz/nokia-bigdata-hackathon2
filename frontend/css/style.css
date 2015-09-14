@@ -64,3 +64,9 @@ html, body, .container {
   width: 100%;
   padding: 0;
 }
+
+.main-output {
+  background-color: white;
+  margin: 0px;
+  padding: 20px;
+}
