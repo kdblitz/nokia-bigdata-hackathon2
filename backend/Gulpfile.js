@@ -12,27 +12,18 @@ gulp.task('mongoDbApi', function() {
   var fileReader = require('./app/models/fileReader');
   var csvConverter = require('./app/models/csvConverter');
   var path = require('path');
-  console.log('file: ');
-  console.log(fileReader);
 
   importFileToMongoDb = function (req, res) {
-    // req.body will contains the parsed body
-    console.log(fileReader);
-    console.log(req.body.file.path);
-    console.log(req.body.file.name);
-    console.log(path.join(req.body.file.path , req.body.file.name));
+    var count = 1;
     fileReader.read(req.body.file.path, function(line) {
       configurations.insert(csvConverter(line),function(err) {
         if (err)
-          console.log(err)
-        console.log(line+" inserted.");
+          console.log("failed: " +err+": "+line +" not inserted.")
+        else
+          console.log((count++) +":"+ line+" inserted.")
       });
     });
   }
-  //var datadump = "SM_G1,G,1,FSMF,GSM,-,-,-,-,-,,,,,24".split(',');
-  //var datadump = "SM_LWG6,LWG,3,FSMF+FBBA+FBBA+FSMF+FBBC+FBBC,WG,WCDMA,WCDMA,LTE,LTE,LTE,,1,1,15.5,24".split(",")
-  //var csvConverter = require('./app/models/csvConverter');
-  // csvConverter(datadump)
 });
 
 gulp.task('connect',['mongoDbApi'], function() {
