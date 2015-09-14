@@ -1,3 +1,14 @@
-<div class = "main-output">
-This is the mainOutput {{displayObject}}
+<div class = "main-output" ng-show="displayResult.enabled">
+  <div>
+    <h3>Visual Representation</h3>
+  </div>
+  <div class = "main-output-visual">
+    <div class = "col-md-6 visual-1">
+      V1
+    </div>
+    <div class = "col-md-6 visual-2">
+      V2
+    </div>
+  </div>
+  This is the image part. {{displayResult.displayObject}}
 </div>

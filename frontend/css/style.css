@@ -16,6 +16,7 @@ html, body, .container {
   padding: 0px;
 }
 
+/*row-technologies and row-system-module % sum must equal 100%*/
 .row-technologies{
   height: 35%;
 }
@@ -67,6 +68,64 @@ html, body, .container {
 
 .main-output {
   background-color: white;
-  margin: 0px;
-  padding: 20px;
+  padding:3%;
+  padding-top:1%;
+}
+
+.main-output-visual {
+  background-color: white;
+  padding: 2%;
+}
+
+.visual-1 {
+  background-color: olive;
+}
+.visual-2 {
+  background-color: cyan;
+}
+
+table {
+        width: 100%;
+    }
+
+thead{
+  width: 98%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th {
+    height: 30px;
+}
+
+tbody {
+    height: 300px;
+    overflow-y: auto;
+}
+
+thead {
+}
+
+
+tbody td, thead th {
+    width: 100%;
+    float: left;
+}
+
+/*table-subs and table-description weighted % sum must equal 100%*/
+.table-subs{
+  width: 8%;
+  float: left;
+}
+
+.table-description{
+  width: 42%;
+  float: left;
 }
