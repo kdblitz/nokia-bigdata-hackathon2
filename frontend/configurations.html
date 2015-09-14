@@ -1,43 +1,40 @@
 <div class="panel panel-default">
   <div class="panel-heading">Search Results</div>
   <div class="panel-body">
-    <!--span>{{getConfigurations}}</span-->
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Config Id</th>
-          <th>SM Mode</th>
-          <th>SM Deployment</th>
-          <th>
-              <th>TRX</th>
-              <th>SU</th>
-              <th>RCS</th>
-              <th>BCS</th>
-              <th>ECS</th>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="result in getConfigurations | filter: getFsmfFilter_d1()">
-          <td ng-bind="result.configId"></td>
-          <td>
-            <text ng-show="result.smMode.lte.enabled">L</text>
-            <text ng-show="result.smMode.wcdma.enabled">W</text>
-            <text ng-show="result.smMode.gsm.enabled">G</text>
-          </td>
-          <td>
-            {{displaySMDeployment(result.smDeployment,0)}}<br>
-            {{displaySMDeployment(result.smDeployment,1)}}
-          </td>
-          <td>
-            <th><text>{{result.smMode.gsm.bbCapacity.trx}}</text></th>
-            <th><text>{{result.smMode.wcdma.bbCapacity.su}}</text></th>
-            <th><text>{{result.smMode.lte.bbCapacity.rcs}}</text></th>
-            <th><text>{{result.smMode.lte.bbCapacity.bcs}}</text></th>
-            <th><text>{{result.smMode.lte.bbCapacity.ecs}}</text></th>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="tableContainer">
+      <table class="table table-hover table-striped scrollTable">
+        <thead class="fixedHeader">
+          <tr>
+            <th>
+              <div class="table-subs">Config Id</div>
+              <div class="table-subs">SM Mode</div>
+              <div class="table-description">SM Deployment</div>
+              <div class="table-subs">TRX</div>
+              <div class="table-subs">SU</div>
+              <div class="table-subs">RCS</div>
+              <div class="table-subs">BCS</div>
+              <div class="table-subs">ECS</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="scrollContent">
+          <tr ng-repeat="result in getConfigurations" ng-click="handleOutputEvent(result)">
+            <td>
+            <div class="table-subs" ng-bind="result.configId"></div>
+            <div class="table-subs" ng-bind="displaySMMode(result.smMode)"></div>
+            <div class="table-description">
+              {{displaySMDeployment(result.smDeployment,0)}}<br>
+              {{displaySMDeployment(result.smDeployment,1)}}
+            </div>
+            <div class="table-subs">{{result.smMode.gsm.bbCapacity.trx}}</div>
+            <div class="table-subs">{{result.smMode.wcdma.bbCapacity.su}}</div>
+            <div class="table-subs">{{result.smMode.lte.bbCapacity.rcs}}</div>
+            <div class="table-subs">{{result.smMode.lte.bbCapacity.bcs}}</div>
+            <div class="table-subs">{{result.smMode.lte.bbCapacity.ecs}}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
