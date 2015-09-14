@@ -5,11 +5,30 @@ var $ = require('gulp-load-plugins')();
 var FRONTEND_PATH = '../frontend'
 
 var configurations;
+var importFileToMongoDb;
 
 gulp.task('mongoDbApi', function() {
   configurations = require('./app/models/configuration');
-  var csvConverter = require('./app/models/csvConverter')
+  var fileReader = require('./app/models/fileReader');
+  var csvConverter = require('./app/models/csvConverter');
+  var path = require('path');
+  console.log('file: ');
+  console.log(fileReader);
 
+  importFileToMongoDb = function (req, res) {
+    // req.body will contains the parsed body
+    console.log(fileReader);
+    console.log(req.body.file.path);
+    console.log(req.body.file.name);
+    console.log(path.join(req.body.file.path , req.body.file.name));
+    fileReader.read(req.body.file.path, function(line) {
+      configurations.insert(csvConverter(line),function(err) {
+        if (err)
+          console.log(err)
+        console.log(line+" inserted.");
+      });
+    });
+  }
   //var datadump = "SM_G1,G,1,FSMF,GSM,-,-,-,-,-,,,,,24".split(',');
   //var datadump = "SM_LWG6,LWG,3,FSMF+FBBA+FBBA+FSMF+FBBC+FBBC,WG,WCDMA,WCDMA,LTE,LTE,LTE,,1,1,15.5,24".split(",")
   //var csvConverter = require('./app/models/csvConverter');
@@ -37,10 +56,7 @@ gulp.task('connect',['mongoDbApi'], function() {
       res.json({ message: 'hooray! welcome to our api!' });
   });
 
-  router.post('/upload', function (req, res) {
-    // req.body will contains the parsed body
-    res.json(req.body);
-  });
+  router.post('/upload', importFileToMongoDb);
 
   router.get('/getBbCapacities/:technology', function(req, res){
     configurations.getBbCapacities(req.params.technology, function(err,bbCapacities) {
@@ -84,5 +100,5 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('default', ['connect','watch'], function() {
-  require('opn')('http://localhost:8080');
+  //require('opn')('http://localhost:8080');
 });
