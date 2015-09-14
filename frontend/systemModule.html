@@ -1,32 +1,23 @@
 <div class="sm-box well" >
-  <div class="dropdown">
-    <button class="btn-sm btn-default dropdown-toggle dropdown-fsmf"
-      type="button" id="sm-main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      FSMF - {{ selectedFsmf_d1.technology }}
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="sm-main">
-      <li ng-repeat="option in fsmOptions"><a href="" ng-click="setSelectedFsmf_d1(option)">FSMF - {{option}}</a></li>
-    </ul>
-  </div>
+  <button class="btn-sm btn-primary fsmf" disabled>FMSF</button>
   <span class="dropdown">
-    <button class="btn-sm btn-default dropdown-toggle dropdown-extension"
+    <button class="btn-sm btn-primary dropdown-toggle extension"
       type="button" id="sm-extension-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{ selectedExtension1_d1.card }} - {{ selectedExtension1_d1.technology }}
+      {{ getSelectedExtension(0,0) }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-extension-1">
-      <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension1(option)">{{option}}</a></li>
+      <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension(0,0,option)">{{ option }}</a></li>
     </ul>
   </span>
   <span class="dropdown">
-    <button class="btn-sm btn-default dropdown-toggle dropdown-extension"
+    <button class="btn-sm btn-primary dropdown-toggle extension"
       type="button" id="sm-extension-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{ selectedExtension2_d1.card }} - {{ selectedExtension2_d1.technology }}
+      {{ getSelectedExtension(0,1) }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-extension-2">
-      <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension2(option)">{{option}}</a></li>
+      <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension(0,1,option)">{{ option }}</a></li>
     </ul>
   </span>
 </div>

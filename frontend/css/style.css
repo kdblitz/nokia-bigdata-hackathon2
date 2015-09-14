@@ -17,11 +17,11 @@ html, body, .container {
 }
 
 .row-technologies{
-  height: 35%;
+  height: 45%;
 }
 
 .row-system-module{
-  height: 65%;
+  height: 55%;
 }
 
 .configurations {
@@ -37,25 +37,23 @@ html, body, .container {
 
 .system-module .sm-box {
   background-color: darkgrey;
-  text-align: center;
-  width: 95%;
+  border-radius: 15px;
+  font-size:14px;
+  margin: 0 auto;
+  width: 70%;
 }
 
-.system-module .dropdown-toggle {
-  background: transparent;
-  font-size:14px;
+.system-module .fsmf {
+  width:99%;
+  margin-bottom: 1%;
+}
+
+.system-module .extension {
+  width:49%;
 }
 
 .system-module .dropdown-menu {
-  font-size:14px;
-}
-
-.system-module .dropdown-fsmf {
-  width:99%;
-}
-
-.system-module .dropdown-extension {
-  width:49%;
+  margin-top: 5%;
 }
 
 .technologies {

@@ -3,57 +3,57 @@
 var app = angular.module('configurationSelector');
 
 var filterObject = {
-  configId: null,
+  configId: '',
   smMode: {
     gsm: {
-      enabled: null,
+      enabled: '',
       bbCapacity: {
-        trx: null
+        trx: ''
       }
     },
     lte: {
-      enabled: null,
+      enabled: '',
       bbCapacity: {
-        rcs: null,
-        bcs: null,
-        ecs: null
+        rcs: '',
+        bcs: '',
+        ecs: ''
       }
     },
     wcdma: {
-      enabled: null,
+      enabled: '',
       bbCapacity: {
-        su: null,
+        su: '',
       }
     }
   },
   smDeployment: [
     {
       fsmf:{
-        technology: null,
+        technology: '',
       },
       extension:[
         {
-          technology: null,
-          fbbx: null
+          technology: '',
+          fbbx: ''
         },
         {
-          technology: null,
-          fbbx: null
+          technology: '',
+          fbbx: ''
         }
       ]
     },
     {
       fsmf:{
-        technology: null,
+        technology: '',
       },
       extension:[
         {
-          technology: null,
-          fbbx: null
+          technology: '',
+          fbbx: ''
         },
         {
-          technology: null,
-          fbbx: null
+          technology: '',
+          fbbx: ''
         }
       ]
     }
@@ -91,56 +91,32 @@ app.controller('FilterController', function($scope, ConfigurationService){
     gsm: [0, 24]
   };
 
-  var noExtensionCard = 'No extension';
-  var allExtensionCards = "All cards";
-  var allTechnologies = "All technologies";
-  var extensionCards = [allExtensionCards, 'FBBA', 'FBBC'];
-  var extensionTechnologies = [allTechnologies, 'LTE', 'WCDMA', 'GSM'];
-  $scope.fsmOptions = [allTechnologies, 'LTE', 'WCDMA', 'GSM', 'LTE & GSM', 'WCDMA & GSM'];
-  $scope.extensionOptions = [noExtensionCard].concat( getPermutations(extensionCards, extensionTechnologies) );
-
-  $scope.selectedFsmf_d1 = {
-    technology: allTechnologies
+  var noCard = 'No card';
+  var allCards = "All cards";
+  $scope.extensionOptions = [noCard, allCards, 'FBBA', 'FBBC'];
+  $scope.setSelectedExtension = function(deployment, extension, card) {
+    $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
   };
-  $scope.selectedExtension1_d1 = {
-    card: noExtensionCard,
-    technology: null,
-  };
-  $scope.selectedExtension2_d1 = {
-    card: noExtensionCard,
-    technology: null,
-  };
-
-  $scope.getFsmfFilter_d1 = function() {
-    if ($scope.selectedFsmf_d1.technology === allTechnologies) {
-      return '';
+  $scope.getSelectedExtension = function(deployment, extension) {
+    var selectedCard = $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
+    if (selectedCard === '') {
+      selectedCard = allCards;
     }
-    else {
-      return $scope.selectedFsmf_d1.technology;
+    else if (selectedCard === null) {
+      selectedCard = noCard;
     }
+    return selectedCard;
   };
-
-  $scope.setSelectedFsmf_d1 = function(technology) {
-    $scope.selectedFsmf_d1.technology = technology;
-  }
-  $scope.setSelectedExtension1_d1 = function(card,technology) {
-    $scope.selectedExtension1_d1.card = card;
-    $scope.selectedExtension1_d1.technology = technology;
-  }
-  $scope.setSelectedExtension2_d1 = function(card,technology) {
-    $scope.selectedExtension2_d1.card = card;
-    $scope.selectedExtension2_d1.technology = technology;
-  }
 
   $scope.getBBCapacityValuesForLTE = function() {
     return bbCapacityValues.lte;
-  }
+  };
   $scope.getBBCapacityValuesForWCDMA = function() {
     return bbCapacityValues.wcdma;
-  }
+  };
   $scope.getBBCapacityValuesForGSM = function() {
     return bbCapacityValues.gsm;
-  }
+  };
 });
 
 app.directive('technologies', function() {
@@ -164,16 +140,6 @@ app.directive('configurations', function() {
   };
 });
 
-function getPermutations(array1, array2) {
-  var permutations = [];
-  for (var i = 0; i < array1.length; i++) {
-    for (var j = 0; j < array2.length; j++) {
-      permutations.push( array1[i] + ' - ' + array2[j] );
-    }
-  }
-  return permutations;
-}
-
 function parseSMD(smDeployment){
   var str = "";
   console.log(smDeployment);
@@ -183,7 +149,7 @@ function parseSMD(smDeployment){
   for(var i=0; i<smDeployment.extension.length; i++){
     str += " + "+smDeployment.extension[i].fbbx+":"+smDeployment.extension[i].technology;
   }
-  
+
   return str;
 }
 
