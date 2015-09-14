@@ -20,7 +20,7 @@ var filterObject = {
       }
     },
     wcdma: {
-      enabled: true,
+      enabled: null,
       bbCapacity: {
         su: null,
       }
@@ -74,6 +74,7 @@ app.controller('FilterController', function($scope, ConfigurationService){
   console.log(ConfigurationService.getConfigurations());
   $scope.technologies = technologies;
   $scope.toggleTechnology = toggleTechnology;
+  $scope.filterObject = filterObject;
 
   $scope.getConfigurations = ConfigurationService.getConfigurations();
 
