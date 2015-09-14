@@ -75,10 +75,12 @@ html, body, .container {
 }
 
 .visual-1 {
-  background-color: olive;
+  background-color: lightgreen;
+  height: 140px;
 }
 .visual-2 {
-  background-color: cyan;
+  background-color: lightblue;
+  height: 140px;
 }
 
 table {

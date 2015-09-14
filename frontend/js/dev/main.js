@@ -92,7 +92,7 @@ app.controller('FilterController', function($scope, ConfigurationService){
 
   $scope.handleOutputEvent = function(result){
     $scope.displayResult.enabled = true;
-    $scope.displayResult.displayObject = result;
+    $scope.displayResult.displayObject = displayObject(result);
   }
 
   var configurations = ConfigurationService.getConfigurations();
@@ -191,4 +191,43 @@ function displaySMMode(smMode){
     str += "G";
   }
   return str;
+}
+
+function displayObject(result) {
+  var displayObject = {
+    sm1:{
+      enabled:false,
+      fsmf:{enabled:false,strval:""},
+      fbbx1:{enabled:false,strval:""},
+      fbbx2:{enabled:false,strval:""},
+    },
+    sm2:{
+      enabled:false,
+      fsmf:{enabled:false,strval:""},
+      fbbx1:{enabled:false,strval:""},
+      fbbx2:{enabled:false,strval:""},
+    }
+  }
+  constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
+  constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
+
+  console.log(displayObject);
+  return displayObject;
+}
+
+function constructDisplayObjectSM(displayObjectSM, resultSM){
+  if(resultSM!=null){
+    displayObjectSM.enabled=true;
+    displayObjectSM.fsmf.enabled=true;
+    displayObjectSM.fsmf.strval="FSMF:"+resultSM.fsmf.technology;
+    if(resultSM.extension!=null && resultSM.extension[0]!=null){
+      displayObjectSM.fbbx1.enabled=true;
+      displayObjectSM.fbbx1.strval=resultSM.extension[0].fbbx+":"+resultSM.extension[0].technology;
+      if(resultSM.extension[1]!=null){
+        displayObjectSM.fbbx2.enabled=true;
+        displayObjectSM.fbbx2.strval=resultSM.extension[1].fbbx+":"+resultSM.extension[1].technology;
+      }
+    }
+  }
+  return;
 }
