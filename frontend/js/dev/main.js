@@ -2,6 +2,64 @@
 
 var app = angular.module('configurationSelector');
 
+var filterObject = {
+  configId: null,
+  smMode: {
+    gsm: {
+      enabled: null,
+      bbCapacity: {
+        trx: null
+      }
+    },
+    lte: {
+      enabled: null,
+      bbCapacity: {
+        rcs: null,
+        bcs: null,
+        ecs: null
+      }
+    },
+    wcdma: {
+      enabled: null,
+      bbCapacity: {
+        su: null,
+      }
+    }
+  },
+  smDeployment: [
+    {
+      fsmf:{
+        technology: null,
+      },
+      extension:[
+        {
+          technology: null,
+          fbbx: null
+        },
+        {
+          technology: null,
+          fbbx: null
+        }
+      ]
+    },
+    {
+      fsmf:{
+        technology: null,
+      },
+      extension:[
+        {
+          technology: null,
+          fbbx: null
+        },
+        {
+          technology: null,
+          fbbx: null
+        }
+      ]
+    }
+  ]
+};
+
 var technologies = {
   lte: false,
   wcdma: false,
@@ -16,6 +74,7 @@ app.controller('FilterController', function($scope, ConfigurationService){
   console.log(ConfigurationService.getConfigurations());
   $scope.technologies = technologies;
   $scope.toggleTechnology = toggleTechnology;
+  $scope.filterObject = filterObject;
 
   $scope.getConfigurations = ConfigurationService.getConfigurations();
 
