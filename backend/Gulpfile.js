@@ -91,5 +91,5 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('default', ['connect','watch'], function() {
-  //require('opn')('http://localhost:8080');
+  require('opn')('http://localhost:8080');
 });
