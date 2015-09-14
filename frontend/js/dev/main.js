@@ -71,15 +71,28 @@ var toggleTechnology = function(technology) {
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
-  console.log(ConfigurationService.getConfigurations());
   $scope.technologies = technologies;
   $scope.toggleTechnology = toggleTechnology;
   $scope.filterObject = filterObject;
 
   $scope.getConfigurations = ConfigurationService.getConfigurations();
 
+  $scope.displaySMMode = function(smMode){
+    return displaySMMode(smMode);
+  }
+
   $scope.displaySMDeployment = function(smDeployment,index){
     return displaySMDeployment(smDeployment,index);
+  }
+
+  $scope.displayResult = {
+    enabled:false,
+    displayObject:null,
+  };
+
+  $scope.handleOutputEvent = function(result){
+    $scope.displayResult.enabled = true;
+    $scope.displayResult.displayObject = result;
   }
 
   var configurations = ConfigurationService.getConfigurations();
@@ -133,6 +146,13 @@ app.directive('systemModule', function() {
   };
 });
 
+app.directive('mainOutput', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'mainOutput.html'
+  };
+});
+
 app.directive('configurations', function() {
   return {
     restrict: 'E',
@@ -142,10 +162,8 @@ app.directive('configurations', function() {
 
 function parseSMD(smDeployment){
   var str = "";
-  console.log(smDeployment);
   str += "FSMF:"+smDeployment.fsmf.technology;
 
-  console.log(smDeployment.extension.length);
   for(var i=0; i<smDeployment.extension.length; i++){
     str += " + "+smDeployment.extension[i].fbbx+":"+smDeployment.extension[i].technology;
   }
@@ -157,6 +175,20 @@ function displaySMDeployment(smDeployment,index){
   var str = "";
   if(smDeployment[index]!=null){
     str += "SM"+index+" [ "+parseSMD(smDeployment[index])+" ]";
+  }
+  return str;
+}
+
+function displaySMMode(smMode){
+  var str = "";
+  if(smMode.lte.enabled){
+    str += "L";
+  }
+  if(smMode.wcdma.enabled){
+    str += "W";
+  }
+  if(smMode.gsm.enabled){
+    str += "G";
   }
   return str;
 }
