@@ -2,9 +2,20 @@
 
 var app = angular.module('configurationSelector');
 
+var technologies = {
+  lte: false,
+  wcdma: false,
+  gsm: false
+}
+
+var toggleTechnology = function(technology) {
+  technologies[technology] = !technologies[technology];
+};
+
 app.controller('FilterController', function($scope, ConfigurationService){
   console.log(ConfigurationService.getConfigurations());
-  $scope.test = 'test';
+  $scope.technologies = technologies;
+  $scope.toggleTechnology = toggleTechnology;
 
   var configurations = ConfigurationService.getConfigurations();
   var configLen = configurations.length;
