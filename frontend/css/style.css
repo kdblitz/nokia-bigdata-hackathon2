@@ -32,25 +32,24 @@ html, body, .container {
 
 .system-module {
   background-color: lightblue;
+  text-align: center;
   height: 100%;
   width: 100%;
 }
 
 .system-module .sm-box {
-  background-color: darkgrey;
+  background-color: lightgrey;
   border-radius: 15px;
+  border: 1px solid;
   font-size:14px;
   margin: 0 auto;
-  width: 70%;
-}
-
-.system-module .fsmf {
-  width:99%;
-  margin-bottom: 1%;
+  width: 300px;
 }
 
 .system-module .extension {
-  width:49%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 100%;
 }
 
 .system-module .dropdown-menu {

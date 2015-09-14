@@ -34,11 +34,11 @@ var filterObject = {
       extension:[
         {
           technology: '',
-          fbbx: ''
+          fbbx: null
         },
         {
           technology: '',
-          fbbx: ''
+          fbbx: null
         }
       ]
     },
