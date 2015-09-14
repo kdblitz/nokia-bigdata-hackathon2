@@ -1,1 +1,43 @@
-configurations
+<div class="panel panel-default">
+  <div class="panel-heading">Search Results</div>
+  <div class="panel-body">
+    <!--span>{{getConfigurations}}</span-->
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Config Id</th>
+          <th>SM Mode</th>
+          <th>SM Deployment</th>
+          <th>
+              <th>TRX</th>
+              <th>SU</th>
+              <th>RCS</th>
+              <th>BCS</th>
+              <th>ECS</th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="result in getConfigurations">
+          <td ng-bind="result.configId"></td>
+          <td>
+            <text ng-show="result.smMode.lte.enabled">L</text>
+            <text ng-show="result.smMode.wcdma.enabled">W</text>
+            <text ng-show="result.smMode.gsm.enabled">G</text>
+          </td>
+          <td>
+            SM1[{{displaySMDeployment(result.smDeployment[0])}}] <br>
+            SM2[{{displaySMDeployment(result.smDeployment[0])}}]
+          </td>
+          <td>
+            <th><text>{{result.smMode.gsm.bbCapacity.trx}}</text></th>
+            <th><text>{{result.smMode.wcdma.bbCapacity.su}}</text></th>
+            <th><text>{{result.smMode.lte.bbCapacity.rcs}}</text></th>
+            <th><text>{{result.smMode.lte.bbCapacity.bcs}}</text></th>
+            <th><text>{{result.smMode.lte.bbCapacity.ecs}}</text></th>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

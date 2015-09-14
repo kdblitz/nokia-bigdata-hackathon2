@@ -17,6 +17,12 @@ app.controller('FilterController', function($scope, ConfigurationService){
   $scope.technologies = technologies;
   $scope.toggleTechnology = toggleTechnology;
 
+  $scope.getConfigurations = ConfigurationService.getConfigurations();
+
+  $scope.displaySMDeployment = function(smDeployment){
+    return parseSMD(smDeployment);
+  }
+
   var configurations = ConfigurationService.getConfigurations();
   var configLen = configurations.length;
 
@@ -88,4 +94,13 @@ app.directive('configurations', function() {
 
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
+}
+
+function parseSMD(smDeployment){
+  var str = "";
+  console.log(smDeployment);
+  str += "FSMF:"+smDeployment.fsmf.technology;
+  str += " + "+smDeployment.extension[0].fbbx+":"+smDeployment.extension[0].technology;
+  str += " + "+smDeployment.extension[1].fbbx+":"+smDeployment.extension[1].technology;
+  return str;
 }
