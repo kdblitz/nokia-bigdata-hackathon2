@@ -3,7 +3,7 @@ mongoose.connect('mongodb://localhost/local');
 
 var CreateConfigurationSchema = function() {
   var Schema = mongoose.Schema;
-  var technologySchema = {type: String, enum: ['GSM','LTE','WCDMA']};
+  var technologySchema = {type: String, enum: ['','GSM','LTE','WCDMA','LTE & GSM','WCDMA & GSM']};
   var ExtensionCardSchema = new Schema({
     technology:technologySchema,
     fbbx:String
@@ -19,19 +19,19 @@ var CreateConfigurationSchema = function() {
     smMode: {
       gsm:{
         enabled:{type:Boolean,default:false},
-        bbCapacity:{type:Number,default:null}
+        bbCapacity:{type:Number,default:0}
       },
       lte:{
         enabled:{type:Boolean,default:false},
         bbCapacity:{
-          rcs:{type:Number,default:null},
-          bcs:{type:Number,default:null},
-          ecs:{type:Number,default:null}
+          rcs:{type:Number,default:0},
+          bcs:{type:Number,default:0},
+          ecs:{type:Number,default:0}
         }
       },
       wcdma:{
         enabled:{type:Boolean,default:false},
-        bbCapacity:{type:Number,default:null}
+        bbCapacity:{type:Number,default:0}
       }
     },
     smDeployment:[SmDeploymentSchema]

@@ -1,5 +1,5 @@
-module.exports = function(datadump) {
-  //var datadump = "SM_LWG6,LWG,3,FSMF+FBBA+FBBA+FSMF+FBBC+FBBC,WG,WCDMA,WCDMA,LTE,LTE,LTE,,1,1,15.5,24".split(",")
+module.exports = function(commaDelimitedDatadump) {
+  var datadump = commaDelimitedDatadump.split(",");
   var INDEX_CONFIG_ID = 0;
   var INDEX_TECHNOLOGY = 1;
   var INDEX_SM_CONFIGURATION = 3;
@@ -10,6 +10,20 @@ module.exports = function(datadump) {
 
   var configuration = {
     configId:datadump[INDEX_CONFIG_ID],
+    smMode: {
+      gsm: {
+        enabled:false,
+        bbCapacity:null
+      },
+      lte: {
+        enabled:false,
+        bbCapacity:null
+      },
+      wcdma: {
+        enabled:false,
+        bbCapacity:null
+      },
+    },
     smDeployment:[]
   }
 
@@ -40,7 +54,7 @@ module.exports = function(datadump) {
   for (var ctr = 0;ctr<smDeploymentCount;ctr++) {
     var offset = ctr * MAX_CARDS_PER_DEPLOYMENT;
     var deployment = {
-      fsmf: {technology: datadump[INDEX_FSMF_TECHNOLOOGY + offset]},
+      fsmf: {technology: technologyEnum(datadump[INDEX_FSMF_TECHNOLOOGY + offset])},
       extension: []
     };
     while (smConfiguration[++offset] && (offset%MAX_CARDS_PER_DEPLOYMENT != 0)) {
@@ -52,4 +66,13 @@ module.exports = function(datadump) {
     configuration.smDeployment.push(deployment);
   }
   return configuration;
+}
+
+function technologyEnum(technologyString) {
+  if (technologyString === "WG")
+    return "WCDMA & GSM";
+  else if (technologyString === "LG")
+    return "LTE & GSM";
+  else
+    return technologyString;
 }
