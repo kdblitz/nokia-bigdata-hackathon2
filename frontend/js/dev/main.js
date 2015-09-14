@@ -71,7 +71,6 @@ var toggleTechnology = function(technology) {
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
-  console.log(ConfigurationService.getConfigurations());
   $scope.technologies = technologies;
   $scope.toggleTechnology = toggleTechnology;
   $scope.filterObject = filterObject;
@@ -80,6 +79,11 @@ app.controller('FilterController', function($scope, ConfigurationService){
 
   $scope.displaySMDeployment = function(smDeployment,index){
     return displaySMDeployment(smDeployment,index);
+  }
+
+  $scope.displayObject = "";
+  $scope.handleOutputEvent = function(result){
+    $scope.displayObject = result;
   }
 
   var configurations = ConfigurationService.getConfigurations();
@@ -144,6 +148,13 @@ app.directive('systemModule', function() {
   };
 });
 
+app.directive('mainOutput', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'mainOutput.html'
+  };
+});
+
 app.directive('configurations', function() {
   return {
     restrict: 'E',
@@ -157,14 +168,12 @@ function onlyUnique(value, index, self) {
 
 function parseSMD(smDeployment){
   var str = "";
-  console.log(smDeployment);
   str += "FSMF:"+smDeployment.fsmf.technology;
 
-  console.log(smDeployment.extension.length);
   for(var i=0; i<smDeployment.extension.length; i++){
     str += " + "+smDeployment.extension[i].fbbx+":"+smDeployment.extension[i].technology;
   }
-  
+
   return str;
 }
 
