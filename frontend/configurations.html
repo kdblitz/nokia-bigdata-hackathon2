@@ -26,8 +26,8 @@
             <text ng-show="result.smMode.gsm.enabled">G</text>
           </td>
           <td>
-            SM1[{{displaySMDeployment(result.smDeployment[0])}}] <br>
-            SM2[{{displaySMDeployment(result.smDeployment[0])}}]
+            {{displaySMDeployment(result.smDeployment,0)}}<br>
+            {{displaySMDeployment(result.smDeployment,1)}}
           </td>
           <td>
             <th><text>{{result.smMode.gsm.bbCapacity.trx}}</text></th>

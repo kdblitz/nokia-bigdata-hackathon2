@@ -19,8 +19,8 @@ app.controller('FilterController', function($scope, ConfigurationService){
 
   $scope.getConfigurations = ConfigurationService.getConfigurations();
 
-  $scope.displaySMDeployment = function(smDeployment){
-    return parseSMD(smDeployment);
+  $scope.displaySMDeployment = function(smDeployment,index){
+    return displaySMDeployment(smDeployment,index);
   }
 
   var configurations = ConfigurationService.getConfigurations();
@@ -119,7 +119,19 @@ function parseSMD(smDeployment){
   var str = "";
   console.log(smDeployment);
   str += "FSMF:"+smDeployment.fsmf.technology;
-  str += " + "+smDeployment.extension[0].fbbx+":"+smDeployment.extension[0].technology;
-  str += " + "+smDeployment.extension[1].fbbx+":"+smDeployment.extension[1].technology;
+
+  console.log(smDeployment.extension.length);
+  for(var i=0; i<smDeployment.extension.length; i++){
+    str += " + "+smDeployment.extension[i].fbbx+":"+smDeployment.extension[i].technology;
+  }
+  
+  return str;
+}
+
+function displaySMDeployment(smDeployment,index){
+  var str = "";
+  if(smDeployment[index]!=null){
+    str += "SM"+index+" [ "+parseSMD(smDeployment[index])+" ]";
+  }
   return str;
 }
