@@ -1,8 +1,9 @@
 module.exports = {
-  read: function(filePath,callbackPerLine) {
+  read: function(filePath,callbackPerLine,callbackAfterReading) {
     var fs = require('fs');
     var input = fs.createReadStream(filePath);
     var buffer = '';
+    var readLines = 0;
     input.on('data',function(data) {
       buffer += data;
       var newLineIndex = buffer.indexOf('\n');
@@ -12,6 +13,7 @@ module.exports = {
         callbackPerLine(line);
         lastScannedIndex = newLineIndex + 1;
         newLineIndex = buffer.indexOf('\n', lastScannedIndex);
+        readLines++;
       }
       buffer = buffer.substring(lastScannedIndex);
     });
@@ -19,6 +21,9 @@ module.exports = {
     input.on('end',function() {
       if (buffer.length) {
         callbackPerLine(buffer);
+      }
+      if (callbackAfterReading) {
+        setTimeout(callbackAfterReading,readLines*100);
       }
     });
   }

@@ -14,15 +14,34 @@ gulp.task('mongoDbApi', function() {
   var path = require('path');
 
   importFileToMongoDb = function (req, res) {
-    var count = 1;
+    var insertCount = 0;
+    var errorLines = [];
+    var responseFunction = function() {
+      if (errorLines.length === 0) {
+        res.status(200).send({
+          'status':'success',
+          'message':"Successfully added "+insertCount+" configuration(s)!"
+        });
+      } else {
+        res.status(200).send({
+          'status':'failed',
+          'message':"Successfully added "+insertCount+" configuration(s), but encountered "+errorLines.length+" error(s).",
+          'errors':JSON.stringify(errorLines)
+        });
+      }
+    }
+
     fileReader.read(req.body.file.path, function(line) {
       configurations.insert(csvConverter(line),function(err) {
-        if (err)
-          console.log("failed: " +err+": "+line +" not inserted.")
-        else
-          console.log((count++) +":"+ line+" inserted.")
+        if (err) {
+          console.log("insert failed: " + line + " due to" + err + ".")
+          errorLines.push(line);
+        }
+        else {
+          console.log((++insertCount) + ":" + line + " inserted.")
+        }
       });
-    });
+    },responseFunction);
   }
 });
 
