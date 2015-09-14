@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="result in getConfigurations">
+        <tr ng-repeat="result in getConfigurations | filter: getFsmfFilter_d1()">
           <td ng-bind="result.configId"></td>
           <td>
             <text ng-show="result.smMode.lte.enabled">L</text>

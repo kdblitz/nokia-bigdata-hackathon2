@@ -32,34 +32,47 @@ app.controller('FilterController', function($scope, ConfigurationService){
     gsm: [0, 24]
   };
 
-  var allFsmf = 'FSMF - All technologies';
-  var noExtension = 'No extension';
-  var allExtensions = 'FBBX - All technologies';
-  var smOptions = {
-    fsmf: [allFsmf, 'FSMF - LTE', 'FSMF - WCDMA', 'FSMF - LTE & GSM', 'FSMF - WCDMA & GSM'],
-    extensions: [noExtension, allExtensions, 'FFBA - LTE', 'FFBA - WCDMA', 'FFBA - GSM', 'FFBC - LTE', 'FBBC - WCDMA', 'FBBC - GSM']
+  var noExtensionCard = 'No extension';
+  var allExtensionCards = "All cards";
+  var allTechnologies = "All technologies";
+  var extensionCards = [allExtensionCards, 'FBBA', 'FBBC'];
+  var extensionTechnologies = [allTechnologies, 'LTE', 'WCDMA', 'GSM'];
+  $scope.fsmOptions = [allTechnologies, 'LTE', 'WCDMA', 'GSM', 'LTE & GSM', 'WCDMA & GSM'];
+  $scope.extensionOptions = [noExtensionCard].concat( getPermutations(extensionCards, extensionTechnologies) );
+
+  $scope.selectedFsmf_d1 = {
+    technology: allTechnologies
+  };
+  $scope.selectedExtension1_d1 = {
+    card: noExtensionCard,
+    technology: null,
+  };
+  $scope.selectedExtension2_d1 = {
+    card: noExtensionCard,
+    technology: null,
   };
 
-  $scope.selectedFsmf = allFsmf;
-  $scope.selectedExtension1 = noExtension;
-  $scope.selectedExtension2 = noExtension;
-
-  $scope.setSelectedFsmf = function(fsmf) {
-    $scope.selectedFsmf = fsmf;
-  }
-  $scope.setSelectedExtension1 = function(extension) {
-    $scope.selectedExtension1 = extension;
-  }
-  $scope.setSelectedExtension2 = function(extension) {
-    $scope.selectedExtension2 = extension;
-  }
-
-  $scope.getSmFsmfOptions = function() {
-    return smOptions.fsmf;
+  $scope.getFsmfFilter_d1 = function() {
+    if ($scope.selectedFsmf_d1.technology === allTechnologies) {
+      return '';
+    }
+    else {
+      return $scope.selectedFsmf_d1.technology;
+    }
   };
-  $scope.getSmExtensionOptions = function() {
-    return smOptions.extensions;
-  };
+
+  $scope.setSelectedFsmf_d1 = function(technology) {
+    $scope.selectedFsmf_d1.technology = technology;
+  }
+  $scope.setSelectedExtension1_d1 = function(card,technology) {
+    $scope.selectedExtension1_d1.card = card;
+    $scope.selectedExtension1_d1.technology = technology;
+  }
+  $scope.setSelectedExtension2_d1 = function(card,technology) {
+    $scope.selectedExtension2_d1.card = card;
+    $scope.selectedExtension2_d1.technology = technology;
+  }
+
   $scope.getBBCapacityValuesForLTE = function() {
     return bbCapacityValues.lte;
   }
@@ -92,8 +105,14 @@ app.directive('configurations', function() {
   };
 });
 
-function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+function getPermutations(array1, array2) {
+  var permutations = [];
+  for (var i = 0; i < array1.length; i++) {
+    for (var j = 0; j < array2.length; j++) {
+      permutations.push( array1[i] + ' - ' + array2[j] );
+    }
+  }
+  return permutations;
 }
 
 function parseSMD(smDeployment){

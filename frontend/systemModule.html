@@ -2,31 +2,31 @@
   <div class="dropdown">
     <button class="btn-sm btn-default dropdown-toggle dropdown-fsmf"
       type="button" id="sm-main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{ selectedFsmf }}
+      FSMF - {{ selectedFsmf_d1.technology }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-main">
-      <li ng-repeat="option in getSmFsmfOptions()"><a href="" ng-click="setSelectedFsmf(option)">{{option}}</a></li>
+      <li ng-repeat="option in fsmOptions"><a href="" ng-click="setSelectedFsmf_d1(option)">FSMF - {{option}}</a></li>
     </ul>
   </div>
   <span class="dropdown">
     <button class="btn-sm btn-default dropdown-toggle dropdown-extension"
       type="button" id="sm-extension-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{ selectedExtension1 }}
+      {{ selectedExtension1_d1.card }} - {{ selectedExtension1_d1.technology }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-extension-1">
-      <li ng-repeat="option in getSmExtensionOptions()"><a href="" ng-click="setSelectedExtension1(option)">{{option}}</a></li>
+      <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension1(option)">{{option}}</a></li>
     </ul>
   </span>
   <span class="dropdown">
     <button class="btn-sm btn-default dropdown-toggle dropdown-extension"
       type="button" id="sm-extension-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{ selectedExtension2 }}
+      {{ selectedExtension2_d1.card }} - {{ selectedExtension2_d1.technology }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-extension-2">
-      <li ng-repeat="option in getSmExtensionOptions()"><a href="" ng-click="setSelectedExtension2(option)">{{option}}</a></li>
+      <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension2(option)">{{option}}</a></li>
     </ul>
   </span>
 </div>
