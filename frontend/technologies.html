@@ -1,55 +1,52 @@
   <div class="col-md-4">
     <div>
-      <button ng-click="toggleTechnology('lte')"><span class="glyphicon" ng-class="{'glyphicon-check' : technologies.lte}"></span> LTE</button>
+      <button class="btn btn-md" ng-class="{'active' : technologies.lte}" ng-click="toggleTechnology('lte')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[technologies.lte]"></span> LTE</button>
     </div>
-    <select></select>
   </div>
   <div class="col-md-4">
     <div>
-      <button ng-click="toggleTechnology('wcdma')"><span class="glyphicon" ng-class="{'glyphicon-check' : technologies.wcdma}"></span> WCDMA</button>
+      <button class="btn btn-md" ng-class="{'active' : technologies.wcdma}" ng-click="toggleTechnology('wcdma')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[technologies.wcdma]"></span> WCDMA</button>
     </div>
-    <select></select>
   </div>
   <div class="col-md-4">
     <div>
-      <button ng-click="toggleTechnology('gsm')"><span class="glyphicon" ng-class="{'glyphicon-check' : technologies.gsm}"></span> GSM</button>
+      <button class="btn btn-md" ng-class="{'active' : technologies.gsm}" ng-click="toggleTechnology('gsm')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[technologies.gsm]"></span> GSM</button>
     </div>
-    <select></select>
   </div>
 
   <br><br><br><br>
 
 <h4>Baseband Capacity</h4>
-  <div class="row">
-    <div class="col-md-6">
-      <h5>LTE</h5>
-      <div class="row">
-        <select class="btn btn-info">
-          <option value="" selected disabled>#RCS</option>
-          <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option.bbVal }}">{{ option.bbVal }}</option>
-        </select >
-        <select class="btn btn-info">
-          <option value="" selected disabled>#BCS</option>
-          <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option.bbVal }}">{{ option.bbVal }}</option>
-        </select>
-        <select class="btn btn-info">
-          <option value="" selected disabled>#ECS</option>
-          <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option.bbVal }}">{{ option.bbVal }}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <h5>WCDMA</h5>
+<div class="row">
+  <div class="col-md-6">
+    <h5>LTE</h5>
+    <div class="row">
       <select class="btn btn-info">
-        <option value="" selected disabled>#SU</option>
-        <option ng-repeat="option in getBBCapacityValuesForWCDMA()" value="{{ option.bbVal }}">{{ option.bbVal }}</option>
+        <option value="" selected disabled>#RCS</option>
+        <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option }}">{{ option }}</option>
+      </select >
+      <select class="btn btn-info">
+        <option value="" selected disabled>#BCS</option>
+        <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option }}">{{ option }}</option>
       </select>
-    </div>
-    <div class="col-md-3">
-      <h5>GSM</h5>
       <select class="btn btn-info">
-        <option value="" selected disabled>#TRXs</option>
-        <option ng-repeat="option in getBBCapacityValuesForGSM()" value="{{ option.bbVal }}">{{ option.bbVal }}</option>
+        <option value="" selected disabled>#ECS</option>
+        <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option }}">{{ option }}</option>
       </select>
     </div>
   </div>
+  <div class="col-md-3">
+    <h5>WCDMA</h5>
+    <select class="btn btn-info">
+      <option value="" selected disabled>#SU</option>
+      <option ng-repeat="option in getBBCapacityValuesForWCDMA()" value="{{ option }}">{{ option }}</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <h5>GSM</h5>
+    <select class="btn btn-info">
+      <option value="" selected disabled>#TRXs</option>
+      <option ng-repeat="option in getBBCapacityValuesForGSM()" value="{{ option }}">{{ option }}</option>
+    </select>
+  </div>
+</div>

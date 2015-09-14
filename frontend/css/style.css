@@ -29,47 +29,38 @@ html, body, .container {
   height: 100%;
 }
 
-.technologies {
-  background-color: blue;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-}
-
-.technologies .btn {
-  padding: 6px 2px;
-}
-
 .system-module {
   background-color: lightblue;
   height: 100%;
   width: 100%;
 }
 
-.sm-box {
-  background-color: gray;
+.system-module .sm-box {
+  background-color: darkgrey;
+  text-align: center;
+  width: 95%;
 }
 
-.btn-sm ~ .dropdown-menu {
-  font-size:12px;
+.system-module .dropdown-toggle {
+  background: transparent;
+  font-size:14px;
 }
 
-.technologies .btn.active {
-	display: none;
+.system-module .dropdown-menu {
+  font-size:14px;
 }
 
-.technologies .btn span:nth-of-type(1)  {
-	display: none;
+.system-module .dropdown-fsmf {
+  width:99%;
 }
 
-.technologies .btn span:last-child  {
-	display: block;
+.system-module .dropdown-extension {
+  width:49%;
 }
 
-.technologies .btn.active  span:nth-of-type(1)  {
-	display: block;
-}
-
-.technologies .btn.active span:last-child  {
-	display: none;
+.technologies {
+  background-color: blue;
+  height: 100%;
+  width: 100%;
+  padding: 0;
 }

@@ -1,32 +1,32 @@
 <div class="sm-box well" >
   <div class="dropdown">
-    <button class="btn-sm btn-default dropdown-toggle"
+    <button class="btn-sm btn-default dropdown-toggle dropdown-fsmf"
       type="button" id="sm-main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      FSMF
+      {{ selectedFsmf }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-main">
-      <li ng-repeat="option in getSmMainOptions()"><a href="#">{{option}}</a></li>
+      <li ng-repeat="option in getSmFsmfOptions()"><a href="" ng-click="setSelectedFsmf(option)">{{option}}</a></li>
     </ul>
   </div>
   <span class="dropdown">
-    <button class="btn-sm btn-default dropdown-toggle"
+    <button class="btn-sm btn-default dropdown-toggle dropdown-extension"
       type="button" id="sm-extension-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Extension 1
+      {{ selectedExtension1 }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-extension-1">
-      <li ng-repeat="option in getSmExtensionOptions()"><a href="#">{{option}}</a></li>
+      <li ng-repeat="option in getSmExtensionOptions()"><a href="" ng-click="setSelectedExtension1(option)">{{option}}</a></li>
     </ul>
   </span>
   <span class="dropdown">
-    <button class="btn-sm btn-default dropdown-toggle"
+    <button class="btn-sm btn-default dropdown-toggle dropdown-extension"
       type="button" id="sm-extension-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Extension 2
+      {{ selectedExtension2 }}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="sm-extension-2">
-      <li ng-repeat="option in getSmExtensionOptions()"><a href="#">{{option}}</a></li>
+      <li ng-repeat="option in getSmExtensionOptions()"><a href="" ng-click="setSelectedExtension2(option)">{{option}}</a></li>
     </ul>
   </span>
 </div>
