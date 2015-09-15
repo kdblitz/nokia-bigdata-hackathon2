@@ -3,14 +3,14 @@ mongoose.connect('mongodb://localhost/local');
 
 var CreateConfigurationSchema = function() {
   var Schema = mongoose.Schema;
-  var technologySchema = {type: String, enum: ['','GSM','LTE','WCDMA','LTE & GSM','WCDMA & GSM']};
+  var technologySchema = {type: String, enum: ['','GSM','LTE','WCDMA']};
   var ExtensionCardSchema = new Schema({
     technology:technologySchema,
     fbbx:String
   })
   var SmDeploymentSchema = new Schema({
     fsmf: {
-      technology:technologySchema,
+      technology:[technologySchema],
     },
     extension:[ExtensionCardSchema]
   })

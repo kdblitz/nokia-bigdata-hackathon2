@@ -152,3 +152,18 @@ tbody td, thead th {
 .greyed-area{
   background-color: white;
 }
+
+.alert.top {
+    right: 0;
+    left: 0;
+}
+.alert.top, .alert.top-left, .alert.top-right {
+    top: 50px;
+    right: 0;
+}
+
+.alert.bottom, .alert.bottom-left, .alert.bottom-right, .alert.top, .alert.top-left, .alert.top-right {
+    position: fixed;
+    z-index: 1050;
+    margin: 20px;
+}
