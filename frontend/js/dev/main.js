@@ -161,6 +161,20 @@ app.directive('configurations', function() {
   };
 });
 
+app.filter('config', function() {
+  return function(input) {
+    var filteredList = [];
+    angular.forEach(input, function(value, key) {
+      if(filterObject.smMode.lte.enabled == value.smMode.lte.enabled &&
+         filterObject.smMode.wcdma.enabled == value.smMode.wcdma.enabled &&
+         filterObject.smMode.gsm.enabled == value.smMode.gsm.enabled) {
+			  filteredList.push(value);
+      }
+    });
+    return filteredList;
+  };
+});
+
 function parseSMD(smDeployment){
   var str = "";
   str += "FSMF:"+smDeployment.fsmf.technology;

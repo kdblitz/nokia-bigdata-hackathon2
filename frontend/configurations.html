@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody class="scrollContent">
-    <tr ng-repeat="result in getConfigurations" ng-click="handleOutputEvent(result)">
+    <tr ng-repeat="result in getConfigurations | config" ng-click="handleOutputEvent(result)">
       <td>
       <div class="table-subs" ng-bind="result.configId"></div>
       <div class="table-subs" ng-bind="displaySMMode(result.smMode)"></div>
