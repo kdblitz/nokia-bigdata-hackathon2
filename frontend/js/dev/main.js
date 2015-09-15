@@ -41,7 +41,13 @@ var filterObject = {
 };
 
 var toggleTechnology = function(technology) {
-  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
+  var tech = filterObject.smMode[technology];
+  if (tech.enabled) {
+    angular.forEach(tech.bbCapacity, function(value, key) {
+      tech.bbCapacity[key] = '';
+    }
+  )}
+  tech.enabled = !tech.enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
@@ -156,8 +162,21 @@ app.filter('config', function() {
 function isMatchingTechnologyMode(filterMode,dataMode) {
   return filterMode.lte.enabled == dataMode.lte.enabled &&
          filterMode.wcdma.enabled == dataMode.wcdma.enabled &&
-         filterMode.gsm.enabled == dataMode.gsm.enabled;
+         filterMode.gsm.enabled == dataMode.gsm.enabled &&
+         bbCapacityFilter(filterMode, 'lte', 'rcs', dataMode.lte.bbCapacity.rcs) &&
+         bbCapacityFilter(filterMode, 'lte', 'bcs', dataMode.lte.bbCapacity.bcs) &&
+         bbCapacityFilter(filterMode, 'lte', 'ecs', dataMode.lte.bbCapacity.ecs) &&
+         bbCapacityFilter(filterMode, 'wcdma', 'su', dataMode.wcdma.bbCapacity.su) &&
+         bbCapacityFilter(filterMode, 'gsm', 'trx', dataMode.gsm.bbCapacity.trx);
 }
+
+function bbCapacityFilter(filterMode, technology, baseband, value) {
+  if (filterMode[technology].bbCapacity[baseband] != '') {
+    return (filterObject.smMode[technology].bbCapacity[baseband] == value)
+  }
+  return true;
+}
+
 
 function isMatchingDeployment(filterDeployments,dataDeployments) {
   for (var i = 0; i < filterDeployments.length; i++) {
@@ -243,7 +262,6 @@ function displayObject(result) {
   constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
   constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
 
-  console.log(displayObject);
   return displayObject;
 }
 
