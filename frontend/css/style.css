@@ -7,12 +7,6 @@ html, body, .container {
   background: transparent;
 }
 
-.btn-add {
-  min-height: 100px;
-  height: 100%;
-  width: 100%;
-}
-
 .rounded-border {
   border-radius: 10px;
 }
@@ -20,10 +14,6 @@ html, body, .container {
 .system-module {
   text-align: center;
   padding: 3px;
-}
-
-.secondary-module, .secondary-module button.btn-add{
-  height: 100%
 }
 
 .sm-select {
