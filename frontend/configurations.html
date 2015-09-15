@@ -3,8 +3,6 @@
   <thead class="fixedHeader">
     <tr>
       <th>
-        <div class="table-subs">Config Id</div>
-        <div class="table-subs">SM Mode</div>
         <div class="table-description">SM Deployment</div>
         <div class="table-subs">TRX</div>
         <div class="table-subs">SU</div>
@@ -15,19 +13,18 @@
     </tr>
   </thead>
   <tbody class="scrollContent">
-    <tr ng-repeat="result in getConfigurations | config" ng-click="handleOutputEvent(result)">
+    <tr ng-repeat="result in getConfigurations | config" ng-click="handleOutputEvent(result,$index)"
+    ng-class=" selectedRow==$index ? 'table-selected' : '' ">
       <td>
-      <div class="table-subs" ng-bind="result.configId"></div>
-      <div class="table-subs" ng-bind="displaySMMode(result.smMode)"></div>
-      <div class="table-description">
-        {{displaySMDeployment(result.smDeployment,0)}}<br>
-        {{displaySMDeployment(result.smDeployment,1)}}
-      </div>
-      <div class="table-subs">{{result.smMode.gsm.bbCapacity.trx}}</div>
-      <div class="table-subs">{{result.smMode.wcdma.bbCapacity.su}}</div>
-      <div class="table-subs">{{result.smMode.lte.bbCapacity.rcs}}</div>
-      <div class="table-subs">{{result.smMode.lte.bbCapacity.bcs}}</div>
-      <div class="table-subs">{{result.smMode.lte.bbCapacity.ecs}}</div>
+        <div class="table-description">
+          {{displaySMDeployment(result.smDeployment,0)}}<br>
+          {{displaySMDeployment(result.smDeployment,1)}}
+        </div>
+        <div class="table-subs">{{result.smMode.gsm.bbCapacity}}</div>
+        <div class="table-subs">{{result.smMode.wcdma.bbCapacity}}</div>
+        <div class="table-subs">{{result.smMode.lte.bbCapacity.rcs}}</div>
+        <div class="table-subs">{{result.smMode.lte.bbCapacity.bcs}}</div>
+        <div class="table-subs">{{result.smMode.lte.bbCapacity.ecs}}</div>
       </td>
     </tr>
   </tbody>
