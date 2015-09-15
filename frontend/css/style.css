@@ -41,12 +41,35 @@ html, body, .container {
 }
 
 .visual-1 {
-  background-color: lightgreen;
-  height: 140px;
+  background-color: lightblue;
+  width: 45%;
+  padding: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-style: outset;
+  border-width: medium;
+  /*height: 120px;*/
+  margin: 10px;
+  border-radius: 10px;
 }
 .visual-2 {
   background-color: lightblue;
-  height: 140px;
+  width: 50%;
+  padding: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border: black;
+  /*height: 120px;*/
+  margin: 10px;
+}
+
+.btn-semi-block{
+  width: 48%
+}
+
+.div-fsmf-button{
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 table {
@@ -93,4 +116,39 @@ tbody td, thead th {
 .table-description{
   width: 42%;
   float: left;
+}
+
+.rounded-corners{
+  border-radius: 5px;
+}
+
+.dashed-borders{
+  border: grey 3px dashed;
+}
+
+.outset-borders{
+  border-width:5px;
+  border-style:outset;
+}
+
+.outset-borders2{
+  border-width:4px;
+  border-style:outset;
+}
+
+.inset-borders{
+  border:lightblue;
+  border-width:5px;
+  border-style:inset;
+  background: lightblue;
+}
+
+.custom-borders-1{
+  border:cyan;
+  border-width:4px;
+  border-style:outset;
+}
+
+.greyed-area{
+  background-color: white;
 }
