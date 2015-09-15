@@ -2,6 +2,17 @@
 
 var app = angular.module('configurationSelector');
 
+var defaultDeployment = {
+  extension:[
+    {
+      fbbx: 'Any Card'
+    },
+    {
+      fbbx: 'Any Card'
+    }
+  ]
+};
+
 var filterObject = {
   configId: '',
   smMode: {
@@ -26,38 +37,7 @@ var filterObject = {
       }
     }
   },
-  smDeployment: [
-    {
-      fsmf:{
-        technology: '',
-      },
-      extension:[
-        {
-          technology: '',
-          fbbx: ''
-        },
-        {
-          technology: '',
-          fbbx: ''
-        }
-      ]
-    },
-    {
-      fsmf:{
-        technology: '',
-      },
-      extension:[
-        {
-          technology: '',
-          fbbx: ''
-        },
-        {
-          technology: '',
-          fbbx: ''
-        }
-      ]
-    }
-  ]
+  smDeployment: [defaultDeployment]
 };
 
 var toggleTechnology = function(technology) {
@@ -80,10 +60,6 @@ app.controller('FilterController', function($scope, ConfigurationService){
     alert("error");
   });
 
-  $scope.displaySMMode = function(smMode){
-    return displaySMMode(smMode);
-  }
-
   $scope.displaySMDeployment = function(smDeployment,index){
     return displaySMDeployment(smDeployment,index);
   }
@@ -104,22 +80,23 @@ app.controller('FilterController', function($scope, ConfigurationService){
     gsm: [0, 24]
   };
 
-  var noCard = 'No card';
-  var allCards = "All cards";
-  $scope.extensionOptions = [noCard, allCards, 'FBBA', 'FBBC'];
+  var anyCard = 'Any Card';
+  $scope.extensionOptions = [anyCard, 'FBBA', 'FBBC'];
+  $scope.deployments = 1;
   $scope.setSelectedExtension = function(deployment, extension, card) {
-    if (card === allCards) {
-      card = '';
-    }
     $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
   };
   $scope.getSelectedExtension = function(deployment, extension) {
-    var selectedCard = $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
-    if (selectedCard === '') {
-      selectedCard = allCards;
-    }
-    return selectedCard;
+    return $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
   };
+  $scope.addDeployment = function() {
+    $scope.deployments++;
+    $scope.filterObject.smDeployment.push(defaultDeployment);
+  }
+  $scope.removeDeployment = function() {
+    $scope.deployments--;
+    $scope.filterObject.smDeployment.pop();
+  }
 
   $scope.getBBCapacityValuesForLTE = function() {
     return bbCapacityValues.lte;
@@ -171,25 +148,62 @@ app.directive('configurations', function() {
 app.filter('config', function() {
   return function(input) {
     var filteredList = [];
-    angular.forEach(input, function(value, key) {
-      if(filterObject.smMode.lte.enabled == value.smMode.lte.enabled &&
-         filterObject.smMode.wcdma.enabled == value.smMode.wcdma.enabled &&
-         filterObject.smMode.gsm.enabled == value.smMode.gsm.enabled &&
-         bbCapacityFilter('lte','rcs',value.smMode.lte.bbCapacity.rcs) &&
-         bbCapacityFilter('lte','bcs',value.smMode.lte.bbCapacity.bcs) &&
-         bbCapacityFilter('lte','ecs',value.smMode.lte.bbCapacity.ecs) &&
-         bbCapacityFilter('wcdma','su',value.smMode.wcdma.bbCapacity.su) &&
-         bbCapacityFilter('gsm','trx',value.smMode.gsm.bbCapacity.trx)) {
-			  filteredList.push(value);
+    angular.forEach(input, function(configurations, key) {
+      if (isMatchingTechnologyMode(filterObject.smMode,configurations.smMode) && isMatchingDeployment(filterObject.smDeployment,configurations.smDeployment)) {
+			  filteredList.push(configurations);
       }
     });
     return filteredList;
   };
 });
 
-var bbCapacityFilter = function(technology, baseband, value) {
-  if( filterObject.smMode[technology].bbCapacity[baseband] != '') {
+function isMatchingTechnologyMode(filterMode,dataMode) {
+  return filterMode.lte.enabled == dataMode.lte.enabled &&
+         filterMode.wcdma.enabled == dataMode.wcdma.enabled &&
+         filterMode.gsm.enabled == dataMode.gsm.enabled &&
+         bbCapacityFilter(filterMode, 'lte', 'rcs', dataMode.lte.bbCapacity.rcs) &&
+         bbCapacityFilter(filterMode, 'lte', 'bcs', dataMode.lte.bbCapacity.bcs) &&
+         bbCapacityFilter(filterMode, 'lte', 'ecs', dataMode.lte.bbCapacity.ecs) &&
+         bbCapacityFilter(filterMode, 'wcdma', 'su', dataMode.wcdma.bbCapacity.su) &&
+         bbCapacityFilter(filterMode, 'gsm', 'trx', dataMode.gsm.bbCapacity.trx);
+}
+
+function bbCapacityFilter(filterMode, technology, baseband, value) {
+  if (filterMode[technology].bbCapacity[baseband] != '') {
     return (filterObject.smMode[technology].bbCapacity[baseband] == value)
+  }
+  return true;
+}
+
+function isMatchingDeployment(filterDeployments,dataDeployments) {
+  for (var i = 0; i < filterDeployments.length; i++) {
+    var filterDeployment = filterDeployments[i];
+    var dataDeployment = dataDeployments[i];
+    if (dataDeployment == undefined) {
+      return false;
+    }
+    else if (!isMatchingExtensions(filterDeployment.extension,dataDeployment.extension)) {
+      return false;
+    }
+  }
+  if (dataDeployments.length > filterDeployments.length) {
+    return false;
+  }
+  return true;
+}
+
+function isMatchingExtensions(filterExtensions,dataExtensions) {
+  for (var j = 0; j < filterExtensions.length; j++) {
+    var filterExtension = filterExtensions[j];
+    var dataExtension = dataExtensions[j];
+    if (filterExtension.fbbx != 'Any Card') {
+      if (dataExtension == undefined) {
+        return false;
+      }
+      else if (filterExtension.fbbx != dataExtension.fbbx) {
+        return false;
+      }
+    }
   }
   return true;
 }
