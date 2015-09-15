@@ -63,7 +63,6 @@ var filterObject = {
 var toggleTechnology = function(technology) {
   var tech = filterObject.smMode[technology];
   if (tech.enabled) {
-    console.log('here');
     angular.forEach(tech.bbCapacity, function(value, key) {
       tech.bbCapacity[key] = '';
     }
@@ -245,7 +244,6 @@ function displayObject(result) {
   constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
   constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
 
-  console.log(displayObject);
   return displayObject;
 }
 
