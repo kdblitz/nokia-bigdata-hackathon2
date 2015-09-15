@@ -76,6 +76,13 @@ gulp.task('connect',['mongoDbApi'], function() {
     })
   });
 
+  router.get('/getConfigs',function(req,res){
+    configurations.getAllConfigurations(function(err,configurations){
+      if (err)
+        res.send(err);
+      res.json(configurations);
+    })
+  });
 
   // REGISTER OUR ROUTES -------------------------------
   app.use('/api', router);

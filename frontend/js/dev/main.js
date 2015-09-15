@@ -68,7 +68,11 @@ app.controller('FilterController', function($scope, ConfigurationService){
   $scope.toggleTechnology = toggleTechnology;
   $scope.filterObject = filterObject;
 
-  $scope.getConfigurations = ConfigurationService.getConfigurations();
+  ConfigurationService.getConfigurations().then(function(response) {
+    $scope.getConfigurations = response.data;
+  }, function(err) {
+    alert("error");
+  });
 
   $scope.displaySMMode = function(smMode){
     return displaySMMode(smMode);
@@ -87,9 +91,6 @@ app.controller('FilterController', function($scope, ConfigurationService){
     $scope.displayResult.enabled = true;
     $scope.displayResult.displayObject = displayObject(result);
   }
-
-  var configurations = ConfigurationService.getConfigurations();
-  var configLen = configurations.length;
 
   var bbCapacityValues = {
     lte: [0, 1, 2, 3],
