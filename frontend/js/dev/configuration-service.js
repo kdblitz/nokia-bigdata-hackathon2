@@ -1,5 +1,5 @@
 'use strict';
-angular.module('configurationSelector',[])
+angular.module('configurationSelector',['mgcrea.ngStrap'])
   .service('ConfigurationService', function($http) {
     return {
       getConfigurations: function() {
@@ -8,12 +8,5 @@ angular.module('configurationSelector',[])
           url: 'http://localhost:8080/api/getConfigs',
         });
       },
-    };
-  });
-
-angular.module('configurationSelector',['mgcrea.ngStrap'])
-  .service('ConfigurationService', function ConfigurationService() {
-    this.getConfigurations = function() {
-      return mockData;
     };
   });
