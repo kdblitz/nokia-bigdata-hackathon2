@@ -61,7 +61,13 @@ var filterObject = {
 };
 
 var toggleTechnology = function(technology) {
-  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
+  var tech = filterObject.smMode[technology];
+  if (tech.enabled) {
+    angular.forEach(tech.bbCapacity, function(value, key) {
+      tech.bbCapacity[key] = '';
+    }
+  )}
+  tech.enabled = !tech.enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
@@ -168,13 +174,25 @@ app.filter('config', function() {
     angular.forEach(input, function(value, key) {
       if(filterObject.smMode.lte.enabled == value.smMode.lte.enabled &&
          filterObject.smMode.wcdma.enabled == value.smMode.wcdma.enabled &&
-         filterObject.smMode.gsm.enabled == value.smMode.gsm.enabled) {
+         filterObject.smMode.gsm.enabled == value.smMode.gsm.enabled &&
+         bbCapacityFilter('lte','rcs',value.smMode.lte.bbCapacity.rcs) &&
+         bbCapacityFilter('lte','bcs',value.smMode.lte.bbCapacity.bcs) &&
+         bbCapacityFilter('lte','ecs',value.smMode.lte.bbCapacity.ecs) &&
+         bbCapacityFilter('wcdma','su',value.smMode.wcdma.bbCapacity.su) &&
+         bbCapacityFilter('gsm','trx',value.smMode.gsm.bbCapacity.trx)) {
 			  filteredList.push(value);
       }
     });
     return filteredList;
   };
 });
+
+var bbCapacityFilter = function(technology, baseband, value) {
+  if( filterObject.smMode[technology].bbCapacity[baseband] != '') {
+    return (filterObject.smMode[technology].bbCapacity[baseband] == value)
+  }
+  return true;
+}
 
 function parseSMD(smDeployment){
   var str = "";
@@ -227,7 +245,6 @@ function displayObject(result) {
   constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
   constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
 
-  console.log(displayObject);
   return displayObject;
 }
 
