@@ -4,51 +4,57 @@
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.lte.enabled]"></span>
     LTE
   </button>
-  <select ng-model="filterObject.smMode.lte.bbCapacity.rcs" class="btn-xs outset-borders-select"
-    ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
-    ng-class="{'disabled': !filterObject.smMode.lte.enabled,
-      'btn-primary': filterObject.smMode.lte.enabled}">
-    <option value="" selected>Any RCS</option>
-    <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option }}">{{ option }}</option>
-  </select >
-  <select ng-model="filterObject.smMode.lte.bbCapacity.bcs" class="btn-xs outset-borders-select"
-    ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
-    ng-class="{'disabled': !filterObject.smMode.lte.enabled,
-      'btn-primary': filterObject.smMode.lte.enabled}">
-    <option value="" selected >Any BCS</option>
-    <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option }}">{{ option }}</option>
-  </select>
-  <select ng-model="filterObject.smMode.lte.bbCapacity.ecs" class="btn-xs outset-borders-select"
-    ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
-    ng-class="{'disabled': !filterObject.smMode.lte.enabled,
-      'btn-primary': filterObject.smMode.lte.enabled}">
-    <option value="" selected >Any ECS</option>
-    <option ng-repeat="option in getBBCapacityValuesForLTE()" value="{{ option }}">{{ option }}</option>
-  </select>
+  <span ng-show="filterObject.smMode.lte.enabled" class="animate-show-hide">
+    <select ng-model="filterObject.smMode.lte.bbCapacity.rcs" class="btn-xs outset-borders-select"
+      ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
+      ng-class="{'disabled': !filterObject.smMode.lte.enabled,
+        'btn-primary': filterObject.smMode.lte.enabled}">
+      <option value="" selected>Any RCS</option>
+      <option ng-repeat="option in getBBCapacityValuesForRcsLTE()" value="{{ option }}">{{ option }}</option>
+    </select >
+    <select ng-model="filterObject.smMode.lte.bbCapacity.bcs" class="btn-xs outset-borders-select"
+      ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
+      ng-class="{'disabled': !filterObject.smMode.lte.enabled,
+        'btn-primary': filterObject.smMode.lte.enabled}">
+      <option value="" selected >Any BCS</option>
+      <option ng-repeat="option in getBBCapacityValuesForBcsLTE()" value="{{ option }}">{{ option }}</option>
+    </select>
+    <select ng-model="filterObject.smMode.lte.bbCapacity.ecs" class="btn-xs outset-borders-select"
+      ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
+      ng-class="{'disabled': !filterObject.smMode.lte.enabled,
+        'btn-primary': filterObject.smMode.lte.enabled}">
+      <option value="" selected >Any ECS</option>
+      <option ng-repeat="option in getBBCapacityValuesForEcsLTE()" value="{{ option }}">{{ option }}</option>
+    </select>
+  </span>
 </div>
 <div class="col-md-12">
   <button class="btn btn-md btn-transparent" ng-click="clearDisplayData();toggleTechnology('wcdma')">
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.wcdma.enabled]"></span>
     WCDMA
   </button>
-  <select ng-model="filterObject.smMode.wcdma.bbCapacity.su" class="btn-xs outset-borders-select"
-    ng-disabled="!filterObject.smMode.wcdma.enabled" ng-change="clearDisplayData();"
-    ng-class="{'disabled': !filterObject.smMode.wcdma.enabled,
-      'btn-primary': filterObject.smMode.wcdma.enabled}">
-    <option value="" selected>Any SU</option>
-    <option ng-repeat="option in getBBCapacityValuesForWCDMA()" value="{{ option }}">{{ option }}</option>
-  </select>
+  <span ng-show="filterObject.smMode.wcdma.enabled" class="animate-show-hide">
+    <select ng-model="filterObject.smMode.wcdma.bbCapacity.su" class="btn-xs outset-borders-select"
+      ng-disabled="!filterObject.smMode.wcdma.enabled" ng-change="clearDisplayData();"
+      ng-class="{'disabled': !filterObject.smMode.wcdma.enabled,
+        'btn-primary': filterObject.smMode.wcdma.enabled}">
+      <option value="" selected>Any SU</option>
+      <option ng-repeat="option in getBBCapacityValuesForWCDMA()" value="{{ option }}">{{ option }}</option>
+    </select>
+  </span>
 </div>
 <div class="col-md-12">
   <button class="btn btn-md btn-transparent" ng-click="clearDisplayData();toggleTechnology('gsm')">
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.gsm.enabled]"></span>
     GSM
   </button>
-  <select ng-model="filterObject.smMode.gsm.bbCapacity.trx" class="btn-xs outset-borders-select"
-    ng-disabled="!filterObject.smMode.gsm.enabled" ng-change="clearDisplayData();"
-    ng-class="{'disabled': !filterObject.smMode.gsm.enabled,
-      'btn-primary': filterObject.smMode.gsm.enabled}">
-    <option value="" selected>Any TRXs</option>
-    <option ng-repeat="option in getBBCapacityValuesForGSM()" value="{{ option }}">{{ option }}</option>
-  </select>
+  <span ng-show="filterObject.smMode.gsm.enabled" class="animate-show-hide">
+    <select ng-model="filterObject.smMode.gsm.bbCapacity.trx" class="btn-xs outset-borders-select"
+      ng-disabled="!filterObject.smMode.gsm.enabled" ng-change="clearDisplayData();"
+      ng-class="{'disabled': !filterObject.smMode.gsm.enabled,
+        'btn-primary': filterObject.smMode.gsm.enabled}">
+      <option value="" selected>Any TRXs</option>
+      <option ng-repeat="option in getBBCapacityValuesForGSM()" value="{{ option }}">{{ option }}</option>
+    </select>
+  </span>
 </div>

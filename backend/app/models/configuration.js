@@ -47,7 +47,11 @@ module.exports = {
     Configuration.create(configurationJson, callback)
   },
   getBbCapacities: function(technology,callback) {
-    return Configuration.distinct('smMode.'+technology+'.bbCapacity', callback);
+    var splitTechnologyParam = technology.split("-");
+    var queriedField = 'smMode.' + splitTechnologyParam[0] + '.bbCapacity';
+    if(splitTechnologyParam.length > 1)
+      queriedField += '.' + splitTechnologyParam[1];
+    return Configuration.distinct(queriedField, callback);
   },
   getAllConfigurations: function(callback){
     return Configuration.find(callback);

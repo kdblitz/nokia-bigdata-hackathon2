@@ -50,14 +50,61 @@ var toggleTechnology = function(technology) {
   tech.enabled = !tech.enabled;
 };
 
-app.controller('FilterController', function($scope, ConfigurationService){
+app.controller('FilterController', function($scope, $animate, ConfigurationService){
   $scope.toggleTechnology = toggleTechnology;
   $scope.filterObject = filterObject;
 
   ConfigurationService.getConfigurations().then(function(response) {
     $scope.getConfigurations = response.data;
   }, function(err) {
-    alert("error");
+    console.err(err);
+  });
+
+  var bbCapacityValues = {
+    lte: {rcs:[],bcs:[],ecs:[]},
+    wcdma: [],
+    gsm: []
+  };
+
+  ConfigurationService.getBbCapacityValues('wcdma').then(function(response) {
+    _.each(response.data,function(value) {
+      bbCapacityValues.wcdma.push(value);
+    });
+  }, function(err) {
+    console.err(err);
+  });
+
+  ConfigurationService.getBbCapacityValues('gsm').then(function(response) {
+    _.each(response.data,function(value) {
+      bbCapacityValues.gsm.push(value);
+    });
+  }, function(err) {
+    console.err(err);
+  });
+
+  ConfigurationService.getBbCapacityValues('lte-rcs').then(function(response) {
+    _.each(response.data,function(value) {
+      console.log(value+"!");
+      bbCapacityValues.lte.rcs.push(value);
+    });
+  }, function(err) {
+    console.err(err);
+  });
+
+  ConfigurationService.getBbCapacityValues('lte-bcs').then(function(response) {
+    _.each(response.data,function(value) {
+      bbCapacityValues.lte.bcs.push(value);
+    });
+  }, function(err) {
+    console.err(err);
+  });
+
+  ConfigurationService.getBbCapacityValues('lte-ecs').then(function(response) {
+    _.each(response.data,function(value) {
+      bbCapacityValues.lte.ecs.push(value);
+    });
+  }, function(err) {
+    console.err(err);
   });
 
   $scope.displaySMDeployment = function(smDeployment,index){
@@ -85,12 +132,6 @@ app.controller('FilterController', function($scope, ConfigurationService){
     console.log("cleared!");
   }
 
-  var bbCapacityValues = {
-    lte: [0, 1, 2, 3],
-    wcdma: [0, 3.5, 5.5, 9.5, 11.5, 15.5, 17.5],
-    gsm: [0, 24]
-  };
-
   $scope.extensionOptions = [anyCard, 'FBBA', 'FBBC'];
   $scope.setSelectedExtension = function(deployment, extension, card) {
     $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
@@ -116,8 +157,14 @@ app.controller('FilterController', function($scope, ConfigurationService){
     $scope.filterObject.smDeployment.pop();
   }
 
-  $scope.getBBCapacityValuesForLTE = function() {
-    return bbCapacityValues.lte;
+  $scope.getBBCapacityValuesForRcsLTE = function() {
+    return bbCapacityValues.lte.rcs;
+  };
+  $scope.getBBCapacityValuesForBcsLTE = function() {
+    return bbCapacityValues.lte.bcs;
+  };
+  $scope.getBBCapacityValuesForEcsLTE = function() {
+    return bbCapacityValues.lte.ecs;
   };
   $scope.getBBCapacityValuesForWCDMA = function() {
     return bbCapacityValues.wcdma;
