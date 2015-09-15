@@ -3,57 +3,57 @@
 var app = angular.module('configurationSelector');
 
 var filterObject = {
-  configId: null,
+  configId: '',
   smMode: {
     gsm: {
-      enabled: null,
+      enabled: '',
       bbCapacity: {
-        trx: null
+        trx: ''
       }
     },
     lte: {
-      enabled: null,
+      enabled: '',
       bbCapacity: {
-        rcs: null,
-        bcs: null,
-        ecs: null
+        rcs: '',
+        bcs: '',
+        ecs: ''
       }
     },
     wcdma: {
-      enabled: null,
+      enabled: '',
       bbCapacity: {
-        su: null,
+        su: '',
       }
     }
   },
   smDeployment: [
     {
       fsmf:{
-        technology: null,
+        technology: '',
       },
       extension:[
         {
-          technology: null,
+          technology: '',
           fbbx: null
         },
         {
-          technology: null,
+          technology: '',
           fbbx: null
         }
       ]
     },
     {
       fsmf:{
-        technology: null,
+        technology: '',
       },
       extension:[
         {
-          technology: null,
-          fbbx: null
+          technology: '',
+          fbbx: ''
         },
         {
-          technology: null,
-          fbbx: null
+          technology: '',
+          fbbx: ''
         }
       ]
     }
@@ -92,7 +92,7 @@ app.controller('FilterController', function($scope, ConfigurationService){
 
   $scope.handleOutputEvent = function(result){
     $scope.displayResult.enabled = true;
-    $scope.displayResult.displayObject = result;
+    $scope.displayResult.displayObject = displayObject(result);
   }
 
   var configurations = ConfigurationService.getConfigurations();
@@ -104,43 +104,32 @@ app.controller('FilterController', function($scope, ConfigurationService){
     gsm: [0, 24]
   };
 
-  var allFsmf = 'FSMF - All technologies';
-  var noExtension = 'No extension';
-  var allExtensions = 'FBBX - All technologies';
-  var smOptions = {
-    fsmf: [allFsmf, 'FSMF - LTE', 'FSMF - WCDMA', 'FSMF - LTE & GSM', 'FSMF - WCDMA & GSM'],
-    extensions: [noExtension, allExtensions, 'FFBA - LTE', 'FFBA - WCDMA', 'FFBA - GSM', 'FFBC - LTE', 'FBBC - WCDMA', 'FBBC - GSM']
+  var noCard = 'No card';
+  var allCards = "All cards";
+  $scope.extensionOptions = [noCard, allCards, 'FBBA', 'FBBC'];
+  $scope.setSelectedExtension = function(deployment, extension, card) {
+    $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
+  };
+  $scope.getSelectedExtension = function(deployment, extension) {
+    var selectedCard = $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
+    if (selectedCard === '') {
+      selectedCard = allCards;
+    }
+    else if (selectedCard === null) {
+      selectedCard = noCard;
+    }
+    return selectedCard;
   };
 
-  $scope.selectedFsmf = allFsmf;
-  $scope.selectedExtension1 = noExtension;
-  $scope.selectedExtension2 = noExtension;
-
-  $scope.setSelectedFsmf = function(fsmf) {
-    $scope.selectedFsmf = fsmf;
-  }
-  $scope.setSelectedExtension1 = function(extension) {
-    $scope.selectedExtension1 = extension;
-  }
-  $scope.setSelectedExtension2 = function(extension) {
-    $scope.selectedExtension2 = extension;
-  }
-
-  $scope.getSmFsmfOptions = function() {
-    return smOptions.fsmf;
-  };
-  $scope.getSmExtensionOptions = function() {
-    return smOptions.extensions;
-  };
   $scope.getBBCapacityValuesForLTE = function() {
     return bbCapacityValues.lte;
-  }
+  };
   $scope.getBBCapacityValuesForWCDMA = function() {
     return bbCapacityValues.wcdma;
-  }
+  };
   $scope.getBBCapacityValuesForGSM = function() {
     return bbCapacityValues.gsm;
-  }
+  };
 });
 
 app.directive('technologies', function() {
@@ -170,10 +159,6 @@ app.directive('configurations', function() {
     templateUrl: 'configurations.html'
   };
 });
-
-function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-}
 
 function parseSMD(smDeployment){
   var str = "";
@@ -206,4 +191,43 @@ function displaySMMode(smMode){
     str += "G";
   }
   return str;
+}
+
+function displayObject(result) {
+  var displayObject = {
+    sm1:{
+      enabled:false,
+      fsmf:{enabled:false,strval:""},
+      fbbx1:{enabled:false,strval:""},
+      fbbx2:{enabled:false,strval:""},
+    },
+    sm2:{
+      enabled:false,
+      fsmf:{enabled:false,strval:""},
+      fbbx1:{enabled:false,strval:""},
+      fbbx2:{enabled:false,strval:""},
+    }
+  }
+  constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
+  constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
+
+  console.log(displayObject);
+  return displayObject;
+}
+
+function constructDisplayObjectSM(displayObjectSM, resultSM){
+  if(resultSM!=null){
+    displayObjectSM.enabled=true;
+    displayObjectSM.fsmf.enabled=true;
+    displayObjectSM.fsmf.strval="FSMF:"+resultSM.fsmf.technology;
+    if(resultSM.extension!=null && resultSM.extension[0]!=null){
+      displayObjectSM.fbbx1.enabled=true;
+      displayObjectSM.fbbx1.strval=resultSM.extension[0].fbbx+":"+resultSM.extension[0].technology;
+      if(resultSM.extension[1]!=null){
+        displayObjectSM.fbbx2.enabled=true;
+        displayObjectSM.fbbx2.strval=resultSM.extension[1].fbbx+":"+resultSM.extension[1].technology;
+      }
+    }
+  }
+  return;
 }

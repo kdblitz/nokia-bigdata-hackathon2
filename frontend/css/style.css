@@ -18,11 +18,11 @@ html, body, .container {
 
 /*row-technologies and row-system-module % sum must equal 100%*/
 .row-technologies{
-  height: 35%;
+  height: 45%;
 }
 
 .row-system-module{
-  height: 65%;
+  height: 55%;
 }
 
 .configurations {
@@ -32,31 +32,28 @@ html, body, .container {
 
 .system-module {
   background-color: lightblue;
+  text-align: center;
   height: 100%;
   width: 100%;
 }
 
 .system-module .sm-box {
-  background-color: darkgrey;
-  text-align: center;
-  width: 95%;
+  background-color: lightgrey;
+  border-radius: 15px;
+  border: 1px solid;
+  font-size:14px;
+  margin: 0 auto;
+  width: 300px;
 }
 
-.system-module .dropdown-toggle {
-  background: transparent;
-  font-size:14px;
+.system-module .extension {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 100%;
 }
 
 .system-module .dropdown-menu {
-  font-size:14px;
-}
-
-.system-module .dropdown-fsmf {
-  width:99%;
-}
-
-.system-module .dropdown-extension {
-  width:49%;
+  margin-top: 5%;
 }
 
 .technologies {
@@ -78,10 +75,12 @@ html, body, .container {
 }
 
 .visual-1 {
-  background-color: olive;
+  background-color: lightgreen;
+  height: 140px;
 }
 .visual-2 {
-  background-color: cyan;
+  background-color: lightblue;
+  height: 140px;
 }
 
 table {
