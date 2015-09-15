@@ -28,8 +28,6 @@ html, body, .container {
   width: 100%;
 }
 
-
-
 .system-module .dropdown-menu {
   margin-top: 5%;
 }
@@ -133,6 +131,11 @@ tbody td, thead th {
 
 .outset-borders2{
   border-width:4px;
+  border-style:outset;
+}
+
+.outset-borders-select{
+  border-width:2px;
   border-style:outset;
 }
 
