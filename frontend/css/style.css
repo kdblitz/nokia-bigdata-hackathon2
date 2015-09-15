@@ -7,24 +7,20 @@ html, body, .container {
   background: transparent;
 }
 
-.system-module {
-  text-align: center;
-  padding: 5px;
-}
-
-.system-module .sm-box {
+.rounded-border {
   border-radius: 10px;
 }
 
-.system-module .extension {
-  margin-top: 10%;
-  margin-bottom: 5%;
-  padding: 1px;
-  width: 100%;
+.system-module {
+  text-align: center;
+  padding: 3px;
 }
 
-.system-module .dropdown-menu {
-  margin-top: 5%;
+.sm-select {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 3px;
+  width: 100%;
 }
 
 .main-output {
@@ -58,11 +54,6 @@ html, body, .container {
 
 .btn-semi-block{
   width: 48%
-}
-
-.div-fsmf-button{
-  margin-top: 1%;
-  margin-bottom: 1%;
 }
 
 table {

@@ -2,17 +2,7 @@
 
 var app = angular.module('configurationSelector');
 
-var defaultDeployment = {
-  extension:[
-    {
-      fbbx: 'Any Card'
-    },
-    {
-      fbbx: 'Any Card'
-    }
-  ]
-};
-
+var anyCard = 'Any';
 var filterObject = {
   configId: '',
   smMode: {
@@ -37,8 +27,18 @@ var filterObject = {
       }
     }
   },
-  smDeployment: [defaultDeployment]
-};
+  smDeployment: [
+    {
+      extension:[
+        {
+          fbbx: anyCard
+        },
+        {
+          fbbx: anyCard
+        }
+      ]
+    }
+]};
 
 var toggleTechnology = function(technology) {
   var tech = filterObject.smMode[technology];
@@ -85,16 +85,13 @@ app.controller('FilterController', function($scope, ConfigurationService){
     console.log("cleared!");
   }
 
-
   var bbCapacityValues = {
     lte: [0, 1, 2, 3],
     wcdma: [0, 3.5, 5.5, 9.5, 11.5, 15.5, 17.5],
     gsm: [0, 24]
   };
 
-  var anyCard = 'Any Card';
   $scope.extensionOptions = [anyCard, 'FBBA', 'FBBC'];
-  $scope.deployments = 1;
   $scope.setSelectedExtension = function(deployment, extension, card) {
     $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
   };
@@ -102,11 +99,20 @@ app.controller('FilterController', function($scope, ConfigurationService){
     return $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
   };
   $scope.addDeployment = function() {
-    $scope.deployments++;
-    $scope.filterObject.smDeployment.push(defaultDeployment);
+    $scope.filterObject.smDeployment.push(
+      {
+        extension:[
+          {
+            fbbx: anyCard
+          },
+          {
+            fbbx: anyCard
+          }
+        ]
+      }
+    );
   }
   $scope.removeDeployment = function() {
-    $scope.deployments--;
     $scope.filterObject.smDeployment.pop();
   }
 
@@ -136,8 +142,7 @@ app.directive('systemModule', function() {
     },
     templateUrl: 'systemModule.html',
     link: function(scope) {
-      scope.getSelectedExtension = scope.$parent.getSelectedExtension;
-      scope.setSelectedExtension = scope.$parent.setSelectedExtension;
+      scope.filterObject = scope.$parent.filterObject;
       scope.extensionOptions = scope.$parent.extensionOptions;
     }
   };
@@ -208,7 +213,7 @@ function isMatchingExtensions(filterExtensions,dataExtensions) {
   for (var j = 0; j < filterExtensions.length; j++) {
     var filterExtension = filterExtensions[j];
     var dataExtension = dataExtensions[j];
-    if (filterExtension.fbbx != 'Any Card') {
+    if (filterExtension.fbbx != anyCard) {
       if (dataExtension == undefined) {
         return false;
       }
