@@ -1,0 +1,18 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"
+          ng-click="$hide()">&times;
+        </button>
+        <h4 class="modal-title">Upload configuration</h4>
+        <form role="form" id="upload-form" name="uploadForm">
+          <div>
+              <input type="file" file-model="myFile"/>
+              <button ng-click="uploadFile()">upload me</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

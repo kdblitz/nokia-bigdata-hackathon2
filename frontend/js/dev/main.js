@@ -41,7 +41,13 @@ var filterObject = {
 };
 
 var toggleTechnology = function(technology) {
-  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
+  var tech = filterObject.smMode[technology];
+  if (tech.enabled) {
+    angular.forEach(tech.bbCapacity, function(value, key) {
+      tech.bbCapacity[key] = '';
+    }
+  )}
+  tech.enabled = !tech.enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
@@ -169,7 +175,6 @@ function bbCapacityFilter(filterMode, technology, baseband, value) {
   return true;
 }
 
-
 function isMatchingDeployment(filterDeployments,dataDeployments) {
   for (var i = 0; i < filterDeployments.length; i++) {
     var filterDeployment = filterDeployments[i];
@@ -254,7 +259,6 @@ function displayObject(result) {
   constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
   constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
 
-  console.log(displayObject);
   return displayObject;
 }
 
