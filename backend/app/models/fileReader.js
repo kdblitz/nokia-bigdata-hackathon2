@@ -23,7 +23,7 @@ module.exports = {
         callbackPerLine(buffer);
       }
       if (callbackAfterReading) {
-        setTimeout(callbackAfterReading,readLines*100);
+        setTimeout(callbackAfterReading,readLines*50);
       }
     });
   }

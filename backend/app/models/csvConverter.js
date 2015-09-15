@@ -1,5 +1,17 @@
 module.exports = function(commaDelimitedDatadump) {
-  var datadump = commaDelimitedDatadump.split(",");
+  var datadump = commaDelimitedDatadump.trim().split(",");
+
+  var isInvalid = datadump.length < 15;
+
+  var isEmpty = true;
+  for (var index = 0;index < 15 && isEmpty;index++) {
+    isEmpty = isEmpty && datadump[index].length == 0;
+  }
+
+  if(isInvalid || isEmpty) {
+    return null;
+  }
+
   var INDEX_CONFIG_ID = 0;
   var INDEX_TECHNOLOGY = 1;
   var INDEX_SM_CONFIGURATION = 3;
@@ -65,7 +77,7 @@ module.exports = function(commaDelimitedDatadump) {
     }
     configuration.smDeployment.push(deployment);
   }
-  console.log(require('util').inspect(configuration,null,2))
+  // console.log(require('util').inspect(configuration,null,2))
   return configuration;
 }
 
@@ -85,3 +97,5 @@ function technologyEnum(technologyString) {
   else
     return technologyString;
 }
+
+module.exports(",,,,,,,,,,,,,,")

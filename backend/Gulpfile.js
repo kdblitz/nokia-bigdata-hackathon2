@@ -32,15 +32,18 @@ gulp.task('mongoDbApi', function() {
     }
 
     fileReader.read(req.body.file.path, function(line) {
-      configurations.insert(csvConverter(line),function(err) {
-        if (err) {
-          console.log("insert failed: " + line + " due to" + err + ".")
-          errorLines.push(line);
-        }
-        else {
-          console.log((++insertCount) + ":" + line + " inserted.")
-        }
-      });
+      var configJson = csvConverter(line);
+      if (configJson !== null) {
+        configurations.insert(configJson,function(err) {
+          if (err) {
+            console.log("insert failed: " + line + " due to" + err + ".")
+            errorLines.push(line);
+          }
+          else {
+            console.log((++insertCount) + ":" + line + " inserted.")
+          }
+        });
+      }
     },responseFunction);
   }
 });
