@@ -30,11 +30,11 @@
                     </div>
                     <div class="col-md-6 system-module">
                       <button class="btn-xs btn-secondary btn-block pull-right rounded-border ob-box-height2" title="Add Deployment"
-                        ng-hide="filterObject.smDeployment.length != 1" ng-click="addDeployment()">
+                        ng-hide="filterObject.smDeployment.length != 1" ng-click="clearDisplayData();addDeployment()">
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                       <button class="btn-xs btn-link pull-right" title="Remove Deployment"
-                        ng-show="filterObject.smDeployment.length > 1" ng-click="removeDeployment()">
+                        ng-show="filterObject.smDeployment.length > 1" ng-click="clearDisplayData();removeDeployment()">
                         <span class="glyphicon glyphicon-minus"></span>
                       </button>
                       <system-module deployment="1" ng-if="filterObject.smDeployment.length >= 2"></system-module>
@@ -53,8 +53,12 @@
             Search results
           </div>
           <div class="panel-body">
-            <main-output></main-output>
-            <configurations></configurations>
+            <div class="row padded-output">
+              <main-output></main-output>
+            </div>
+            <div class="row padded-output">
+              <configurations></configurations>
+            </div>
           </div>
         </div>
       </div>
