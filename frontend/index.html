@@ -31,11 +31,11 @@
                   </div>
                   <div class="col-md-6 system-module">
                     <button class="btn-xs btn-primary pull-right" title="Add Deployment"
-                      ng-hide="deployments != 1" ng-click="addDeployment()">
+                      ng-hide="deployments != 1" ng-click="clearDisplayData();addDeployment()">
                       <span class="glyphicon glyphicon-plus"></span>
                     </button>
                     <button class="btn-xs btn-primary pull-right" title="Remove Deployment"
-                      ng-show="deployments > 1" ng-click="removeDeployment()">
+                      ng-show="deployments > 1" ng-click="clearDisplayData();removeDeployment()">
                       <span class="glyphicon glyphicon-minus"></span>
                     </button>
                     <system-module deployment="1" ng-if="deployments >= 2"></system-module>
@@ -53,10 +53,10 @@
             Search results
           </div>
           <div class="panel-body">
-            <div class="row">
+            <div class="row padded-output">
               <main-output></main-output>
             </div>
-            <div class="row">
+            <div class="row padded-output">
               <configurations></configurations>
             </div>
           </div>

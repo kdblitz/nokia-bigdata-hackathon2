@@ -155,6 +155,11 @@ tbody td, thead th {
   border: lightblue 4px outset;
 }
 
+.padded-output{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
 .alert.top {
     right: 0;
     left: 0;

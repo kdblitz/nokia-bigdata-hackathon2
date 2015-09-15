@@ -76,11 +76,13 @@ app.controller('FilterController', function($scope, ConfigurationService){
   }
 
   $scope.clearDisplayData = function(){
+    console.log("clearing...");
     $scope.selectedRow = -1;
     $scope.displayResult = {
       enabled:false,
       displayObject:null,
     };
+    console.log("cleared!");
   }
 
 
