@@ -69,10 +69,20 @@ app.controller('FilterController', function($scope, ConfigurationService){
     displayObject:null,
   };
 
-  $scope.handleOutputEvent = function(result){
+  $scope.handleOutputEvent = function(result, rowIndex){
     $scope.displayResult.enabled = true;
     $scope.displayResult.displayObject = displayObject(result);
+    $scope.selectedRow = rowIndex;
   }
+
+  $scope.clearDisplayData = function(){
+    $scope.selectedRow = -1;
+    $scope.displayResult = {
+      enabled:false,
+      displayObject:null,
+    };
+  }
+
 
   var bbCapacityValues = {
     lte: [0, 1, 2, 3],

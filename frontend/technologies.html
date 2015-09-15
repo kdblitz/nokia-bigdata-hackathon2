@@ -1,6 +1,6 @@
 
 <div class="col-md-12">
-  <button class="btn btn-md btn-transparent" ng-click="toggleTechnology('lte')">
+  <button class="btn btn-md btn-transparent" ng-click="clearDisplayData();toggleTechnology('lte')">
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.lte.enabled]"></span>
     LTE
   </button>
@@ -18,7 +18,7 @@
   </select>
 </div>
 <div class="col-md-12">
-  <button class="btn btn-md btn-transparent" ng-click="toggleTechnology('wcdma')">
+  <button class="btn btn-md btn-transparent" ng-click="clearDisplayData();toggleTechnology('wcdma')">
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.wcdma.enabled]"></span>
     WCDMA
   </button>
@@ -28,7 +28,7 @@
   </select>
 </div>
 <div class="col-md-12">
-  <button class="btn btn-md btn-transparent" ng-click="toggleTechnology('gsm')">
+  <button class="btn btn-md btn-transparent" ng-click="clearDisplayData();toggleTechnology('gsm')">
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.gsm.enabled]"></span>
     GSM
   </button>

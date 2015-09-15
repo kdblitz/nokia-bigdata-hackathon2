@@ -107,12 +107,12 @@ tbody td, thead th {
 
 /*table-subs and table-description weighted % sum must equal 100%*/
 .table-subs{
-  width: 8%;
+  width: 10%;
   float: left;
 }
 
 .table-description{
-  width: 42%;
+  width: 50%;
   float: left;
 }
 
@@ -154,6 +154,10 @@ tbody td, thead th {
 
 .greyed-area{
   background-color: white;
+}
+
+.table-selected{
+  border: lightblue 4px outset;
 }
 
 .alert.top {
