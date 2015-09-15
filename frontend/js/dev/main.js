@@ -3,16 +3,6 @@
 var app = angular.module('configurationSelector');
 
 var anyCard = 'Any';
-var defaultDeployment = {
-  extension:[
-    {
-      fbbx: anyCard
-    },
-    {
-      fbbx: anyCard
-    }
-  ]
-};
 var filterObject = {
   configId: '',
   smMode: {
@@ -37,8 +27,18 @@ var filterObject = {
       }
     }
   },
-  smDeployment: [defaultDeployment]
-};
+  smDeployment: [
+    {
+      extension:[
+        {
+          fbbx: anyCard
+        },
+        {
+          fbbx: anyCard
+        }
+      ]
+    }
+]};
 
 var toggleTechnology = function(technology) {
   var tech = filterObject.smMode[technology];
@@ -69,9 +69,18 @@ app.controller('FilterController', function($scope, ConfigurationService){
     displayObject:null,
   };
 
-  $scope.handleOutputEvent = function(result){
+  $scope.handleOutputEvent = function(result, rowIndex){
     $scope.displayResult.enabled = true;
     $scope.displayResult.displayObject = displayObject(result);
+    $scope.selectedRow = rowIndex;
+  }
+
+  $scope.clearDisplayData = function(){
+    $scope.selectedRow = -1;
+    $scope.displayResult = {
+      enabled:false,
+      displayObject:null,
+    };
   }
 
   var bbCapacityValues = {
@@ -81,7 +90,6 @@ app.controller('FilterController', function($scope, ConfigurationService){
   };
 
   $scope.extensionOptions = [anyCard, 'FBBA', 'FBBC'];
-  $scope.deployments = 1;
   $scope.setSelectedExtension = function(deployment, extension, card) {
     $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
   };
@@ -89,11 +97,20 @@ app.controller('FilterController', function($scope, ConfigurationService){
     return $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
   };
   $scope.addDeployment = function() {
-    $scope.deployments++;
-    $scope.filterObject.smDeployment.push(defaultDeployment);
+    $scope.filterObject.smDeployment.push(
+      {
+        extension:[
+          {
+            fbbx: anyCard
+          },
+          {
+            fbbx: anyCard
+          }
+        ]
+      }
+    );
   }
   $scope.removeDeployment = function() {
-    $scope.deployments--;
     $scope.filterObject.smDeployment.pop();
   }
 
@@ -123,8 +140,7 @@ app.directive('systemModule', function() {
     },
     templateUrl: 'systemModule.html',
     link: function(scope) {
-      scope.getSelectedExtension = scope.$parent.getSelectedExtension;
-      scope.setSelectedExtension = scope.$parent.setSelectedExtension;
+      scope.filterObject = scope.$parent.filterObject;
       scope.extensionOptions = scope.$parent.extensionOptions;
     }
   };

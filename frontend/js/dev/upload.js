@@ -51,24 +51,21 @@ app.service('fileUpload', function ($http, $alert) {
       headers: {'Content-Type': undefined}
     })
     .success(function(json){
-      console.log(json)
-      console.log(json.message);
       $alert(
         {title:'Upload complete :)',
         content:json.message,
-        placement:'top',
+        placement:'top-right',
         type: (json.status === 'success')? json.status:'warning',
         show:true
-      })
-    })
-    .error(function(){
+      });
+    }).error(function(){
       $alert(
         {title:'Upload failed :(',
         content:'Something is went wrong during the upload process.',
-        placement:'top',
+        placement:'top-right',
         type: 'danger',
         show:true
-      })
+      });
     });
   };
 });

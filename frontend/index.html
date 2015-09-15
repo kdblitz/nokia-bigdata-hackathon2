@@ -12,31 +12,33 @@
         <uploaded-configurations-panel></uploaded-configurations-panel>
         <div class="row">
           <div class="col-md-12">
-            <div class="panel panel-info">
+            <div class="panel panel-primary">
               <div class="panel-heading">
                 <span class="glyphicon glyphicon-filter"></span>
                 Configuration Filters
               </div>
               <div class="panel-body">
-                <h6>RADIO ACCESS TECHNOLOGY</h6>
-                <div class="col-md-12 filter-box well">
+                <div class="col-md-12">
+                  <h6>RADIO ACCESS TECHNOLOGY</h6>
                   <technologies></technologies>
                 </div>
-                <h6>DEPLOYMENTS</h6>
-                <div class="col-md-12 filter-box well">
-                  <div class="col-md-6 system-module">
-                    <system-module deployment='0'></system-module>
-                  </div>
-                  <div class="col-md-6 system-module">
-                    <button class="btn-xs btn-info pull-right" title="Add Deployment"
-                      ng-hide="deployments != 1" ng-click="addDeployment()">
-                      <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                    <button class="btn-xs btn-info pull-right" title="Remove Deployment"
-                      ng-show="deployments > 1" ng-click="removeDeployment()">
-                      <span class="glyphicon glyphicon-minus"></span>
-                    </button>
-                    <system-module deployment="1" ng-if="deployments >= 2"></system-module>
+                <div class="col-md-12"><br/>
+                  <h6>DEPLOYMENTS</h6>
+                  <div class="row">
+                    <div class="col-md-6 system-module">
+                      <system-module deployment='0'></system-module>
+                    </div>
+                    <div class="col-md-6 system-module secondary-module">
+                      <button class="btn-xs btn-secondary btn-block pull-right rounded-border ob-box-height2" title="Add Deployment"
+                        ng-hide="filterObject.smDeployment.length != 1" ng-click="addDeployment()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                      <button class="btn-xs btn-link pull-right" title="Remove Deployment"
+                        ng-show="filterObject.smDeployment.length > 1" ng-click="removeDeployment()">
+                        <span class="glyphicon glyphicon-minus"></span>
+                      </button>
+                      <system-module deployment="1" ng-if="filterObject.smDeployment.length >= 2"></system-module>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -45,7 +47,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="panel panel-info">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <span class="glyphicon glyphicon-search"></span>
             Search results

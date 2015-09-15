@@ -3,34 +3,34 @@ html, body, .container {
   height: 100% !important;
 }
 
-.filter-box {
-  border: 1px solid rgba(0,201,255,.6);;
-}
-
 .btn-transparent {
   background: transparent;
+}
+
+.btn-add {
+  min-height: 100px;
+  height: 100%;
+  width: 100%;
+}
+
+.rounded-border {
+  border-radius: 10px;
 }
 
 .system-module {
   text-align: center;
   padding: 3px;
-  font-size: 12px;
 }
 
-.system-module .sm-box {
-  border-radius: 10px;
-  border: 2px solid rgba(0,201,255,.6);
+.secondary-module, .secondary-module button.btn-add{
+  height: 100%
 }
 
-.system-module .dropdown-toggle {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.sm-select {
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 3px;
   width: 100%;
-}
-
-.system-module .dropdown-menu {
-  margin-top: 7px;
 }
 
 .main-output {
@@ -64,11 +64,6 @@ html, body, .container {
 
 .btn-semi-block{
   width: 48%
-}
-
-.div-fsmf-button{
-  margin-top: 1%;
-  margin-bottom: 1%;
 }
 
 table {
@@ -108,12 +103,12 @@ tbody td, thead th {
 
 /*table-subs and table-description weighted % sum must equal 100%*/
 .table-subs{
-  width: 8%;
+  width: 10%;
   float: left;
 }
 
 .table-description{
-  width: 42%;
+  width: 50%;
   float: left;
 }
 
@@ -135,6 +130,11 @@ tbody td, thead th {
   border-style:outset;
 }
 
+.outset-borders-select{
+  border-width:2px;
+  border-style:outset;
+}
+
 .inset-borders{
   border:lightblue;
   border-width:5px;
@@ -150,4 +150,23 @@ tbody td, thead th {
 
 .greyed-area{
   background-color: white;
+}
+
+.table-selected{
+  border: lightblue 4px outset;
+}
+
+.alert.top {
+    right: 0;
+    left: 0;
+}
+.alert.top, .alert.top-left, .alert.top-right {
+    top: 50px;
+    right: 0;
+}
+
+.alert.bottom, .alert.bottom-left, .alert.bottom-right, .alert.top, .alert.top-left, .alert.top-right {
+    position: fixed;
+    z-index: 1050;
+    margin: 20px;
 }

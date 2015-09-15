@@ -79,9 +79,9 @@ function bbCapacity(bbCapacityValue) {
 
 function technologyEnum(technologyString) {
   if (technologyString === "WG")
-    return "WCDMA & GSM";
+    return ["WCDMA", "GSM"];
   else if (technologyString === "LG")
-    return "LTE & GSM";
+    return ["LTE", "GSM"];
   else
     return technologyString;
 }
