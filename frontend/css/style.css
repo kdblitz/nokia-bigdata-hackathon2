@@ -1,19 +1,10 @@
 
 html, body, .container {
   height: 100% !important;
-  width: 100%;
-  padding: 0px;
-}
-
-.row {
-  height: 100%;
-  width: 100%;
-  margin: 0px;
 }
 
 .filters{
   height: 100%;
-  padding: 0px;
 }
 
 /*row-technologies and row-system-module % sum must equal 100%*/
@@ -26,7 +17,6 @@ html, body, .container {
 }
 
 .configurations {
-  background-color: gray;
   height: 100%;
 }
 
@@ -34,7 +24,6 @@ html, body, .container {
   background-color: lightblue;
   text-align: center;
   height: 100%;
-  width: 100%;
 }
 
 .system-module .sm-box {
@@ -57,21 +46,13 @@ html, body, .container {
 }
 
 .technologies {
-  background-color: blue;
   height: 100%;
-  width: 100%;
-  padding: 0;
 }
 
 .main-output {
-  background-color: white;
-  padding:3%;
-  padding-top:1%;
 }
 
 .main-output-visual {
-  background-color: white;
-  padding: 2%;
 }
 
 .visual-1 {
