@@ -174,8 +174,8 @@ function isMatchingTechnologyMode(filterMode,dataMode) {
          bbCapacityFilter(filterMode, 'lte', 'rcs', dataMode.lte.bbCapacity.rcs) &&
          bbCapacityFilter(filterMode, 'lte', 'bcs', dataMode.lte.bbCapacity.bcs) &&
          bbCapacityFilter(filterMode, 'lte', 'ecs', dataMode.lte.bbCapacity.ecs) &&
-         bbCapacityFilter(filterMode, 'wcdma', 'su', dataMode.wcdma.bbCapacity.su) &&
-         bbCapacityFilter(filterMode, 'gsm', 'trx', dataMode.gsm.bbCapacity.trx);
+         bbCapacityFilter(filterMode, 'wcdma', 'su', dataMode.wcdma.bbCapacity) &&
+         bbCapacityFilter(filterMode, 'gsm', 'trx', dataMode.gsm.bbCapacity);
 }
 
 function bbCapacityFilter(filterMode, technology, baseband, value) {
