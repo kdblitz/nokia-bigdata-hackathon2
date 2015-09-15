@@ -61,7 +61,14 @@ var filterObject = {
 };
 
 var toggleTechnology = function(technology) {
-  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
+  var tech = filterObject.smMode[technology];
+  if (tech.enabled) {
+    console.log('here');
+    angular.forEach(tech.bbCapacity, function(value, key) {
+      tech.bbCapacity[key] = '';
+    }
+  )}
+  tech.enabled = !tech.enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
