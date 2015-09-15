@@ -6,27 +6,48 @@
   <link rel="stylesheet" href="css/bootstrap-switch.min.css">
 </head>
 <body>
-  <div class="container" ng-controller="FilterController">
+  <div class="container-fluid" ng-controller="FilterController">
     <div class="row">
       <div class="col-md-4 filters">
-        <div class="row row-technologies">
-          <div class="col-md-12 technologies">
-            <h4>RAT</h4>
-            <technologies></technologies>
-          </div>
-        </div>
-        <div class="row row-system-module">
-          <div class="col-md-12 system-module">
-            <h4>System Module Configuration</h4>
-            <system-module></system-module>
-            <br/>
-            <button class="btn-sm btn-secondary" title="Add Deployment"><span class="glyphicon glyphicon-plus"></span></button>
+        <uploaded-configurations-panel></uploaded-configurations-panel>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <span class="glyphicon glyphicon-filter"></span>
+                Configuration Filters
+              </div>
+              <div class="panel-body">
+                <div class="row-technologies">
+                  <div class="col-md-12 technologies">
+                    <h4>RAT</h4>
+                    <technologies></technologies>
+                  </div>
+                </div>
+                <div class="row-system-module">
+                  <div class="col-md-12 system-module">
+                    <h4>System Module Configuration</h4>
+                    <system-module></system-module>
+                    <br/>
+                    <button class="btn-sm btn-secondary" title="Add Deployment"><span class="glyphicon glyphicon-plus"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-md-8 configurations">
-        <main-output></main-output>
-        <configurations></configurations>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-search"></span>
+            Search results
+          </div>
+          <div class="panel-body">
+            <main-output></main-output>
+            <configurations></configurations>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +56,7 @@
   <script src="js/angular.1.2.20.min.js"></script>
   <script src="js/dev/mock-data.js"></script>
   <script src="js/dev/configuration-service.js"></script>
+  <script src="js/dev/upload.js"></script>
   <script src="js/dev/main.js"></script>
 </body>
 </html>

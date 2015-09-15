@@ -1,4 +1,22 @@
-app = angular.module('configurationSelector');
+var app = angular.module('configurationSelector');
+
+app.directive('uploadedConfigurationsPanel', function() {
+  return {
+    templateUrl: 'uploadPanel.html',
+    restrict:'E',
+    /*link:function($scope) {
+      /*var uploadConfigModal = $modal({
+        scope:$scope,
+        template: '',
+        show:false
+      });
+
+      $scope.showUploadModal = function() {
+        uploadConfigModal.$promise.then(uploadConfigModal.show);
+      };
+    }*/
+  };
+});
 
 app.directive('fileModel', function ($parse) {
   return {
@@ -29,7 +47,7 @@ app.service('fileUpload', function ($http) {
     })
     .error(function(){
     });
-  }
+  };
 });
 
 app.controller('uploadCtrl', function($scope, fileUpload){
@@ -37,7 +55,7 @@ app.controller('uploadCtrl', function($scope, fileUpload){
     var file = $scope.myFile;
     console.log('file is ' );
     console.dir(file);
-    var uploadUrl = "/api/upload";
+    var uploadUrl = '/api/upload';
     fileUpload.uploadFileToUrl(file, uploadUrl);
   };
 });
