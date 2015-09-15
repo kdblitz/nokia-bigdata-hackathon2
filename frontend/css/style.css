@@ -3,10 +3,6 @@ html, body, .container {
   height: 100% !important;
 }
 
-.filter-box {
-  border: 1px solid rgba(0,201,255,.6);;
-}
-
 .btn-transparent {
   background: transparent;
 }
@@ -18,7 +14,6 @@ html, body, .container {
 
 .system-module .sm-box {
   border-radius: 10px;
-  border: 2px solid rgba(0,201,255,.6);;
 }
 
 .system-module .extension {
