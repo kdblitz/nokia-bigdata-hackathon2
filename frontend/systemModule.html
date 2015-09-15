@@ -1,32 +1,32 @@
 <div class="sm-box well" >
-  Deployment 1
+  Deployment {{ deployment+1 }}
   <div class="row">
     <div class="col-md-12">
-      <button class="btn-sm btn-block btn-primary" disabled>FMSF</button>
+      <button class="btn-sm btn-block btn-info extension" disabled>FMSF</button>
     </div>
     <div class="col-md-6">
       <span class="dropdown">
-        <button class="btn-sm btn-primary dropdown-toggle extension"
+        <button class="btn-sm btn-info dropdown-toggle extension"
           type="button" id="sm-extension-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          {{ getSelectedExtension(0,0) }}
+          {{ getSelectedExtension(deployment,0) }}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="sm-extension-1">
           <li class="dropdown-header">Extension Card 1</li>
-          <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension(0,0,option)">{{ option }}</a></li>
+          <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension(deployment,0,option)">{{ option }}</a></li>
         </ul>
       </span>
     </div>
     <div class="col-md-6">
       <span class="dropdown">
-        <button class="btn-sm btn-primary dropdown-toggle extension"
+        <button class="btn-sm btn-info dropdown-toggle extension"
           type="button" id="sm-extension-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          {{ getSelectedExtension(0,1) }}
+          {{ getSelectedExtension(deployment,1) }}
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sm-extension-2">
           <li class="dropdown-header">Extension Card 2</li>
-          <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension(0,1,option)">{{ option }}</a></li>
+          <li ng-repeat="option in extensionOptions"><a href="" ng-click="setSelectedExtension(deployment,1,option)">{{ option }}</a></li>
         </ul>
       </span>
     </div>

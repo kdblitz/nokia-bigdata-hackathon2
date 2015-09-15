@@ -61,7 +61,13 @@ var filterObject = {
 };
 
 var toggleTechnology = function(technology) {
-  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
+  var tech = filterObject.smMode[technology];
+  if (tech.enabled) {
+    angular.forEach(tech.bbCapacity, function(value, key) {
+      tech.bbCapacity[key] = '';
+    }
+  )}
+  tech.enabled = !tech.enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
@@ -101,15 +107,15 @@ app.controller('FilterController', function($scope, ConfigurationService){
   var allCards = "All cards";
   $scope.extensionOptions = [noCard, allCards, 'FBBA', 'FBBC'];
   $scope.setSelectedExtension = function(deployment, extension, card) {
+    if (card === allCards) {
+      card = '';
+    }
     $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
   };
   $scope.getSelectedExtension = function(deployment, extension) {
     var selectedCard = $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
     if (selectedCard === '') {
       selectedCard = allCards;
-    }
-    else if (selectedCard === null) {
-      selectedCard = noCard;
     }
     return selectedCard;
   };
@@ -135,7 +141,15 @@ app.directive('technologies', function() {
 app.directive('systemModule', function() {
   return {
     restrict: 'E',
-    templateUrl: 'systemModule.html'
+    scope: {
+      deployment: "="
+    },
+    templateUrl: 'systemModule.html',
+    link: function(scope) {
+      scope.getSelectedExtension = scope.$parent.getSelectedExtension;
+      scope.setSelectedExtension = scope.$parent.setSelectedExtension;
+      scope.extensionOptions = scope.$parent.extensionOptions;
+    }
   };
 });
 
@@ -152,6 +166,32 @@ app.directive('configurations', function() {
     templateUrl: 'configurations.html'
   };
 });
+
+app.filter('config', function() {
+  return function(input) {
+    var filteredList = [];
+    angular.forEach(input, function(value, key) {
+      if(filterObject.smMode.lte.enabled == value.smMode.lte.enabled &&
+         filterObject.smMode.wcdma.enabled == value.smMode.wcdma.enabled &&
+         filterObject.smMode.gsm.enabled == value.smMode.gsm.enabled &&
+         bbCapacityFilter('lte','rcs',value.smMode.lte.bbCapacity.rcs) &&
+         bbCapacityFilter('lte','bcs',value.smMode.lte.bbCapacity.bcs) &&
+         bbCapacityFilter('lte','ecs',value.smMode.lte.bbCapacity.ecs) &&
+         bbCapacityFilter('wcdma','su',value.smMode.wcdma.bbCapacity.su) &&
+         bbCapacityFilter('gsm','trx',value.smMode.gsm.bbCapacity.trx)) {
+			  filteredList.push(value);
+      }
+    });
+    return filteredList;
+  };
+});
+
+var bbCapacityFilter = function(technology, baseband, value) {
+  if( filterObject.smMode[technology].bbCapacity[baseband] != '') {
+    return (filterObject.smMode[technology].bbCapacity[baseband] == value)
+  }
+  return true;
+}
 
 function parseSMD(smDeployment){
   var str = "";
@@ -204,7 +244,6 @@ function displayObject(result) {
   constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
   constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
 
-  console.log(displayObject);
   return displayObject;
 }
 
