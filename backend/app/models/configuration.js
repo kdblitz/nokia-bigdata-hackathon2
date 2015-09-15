@@ -49,4 +49,7 @@ module.exports = {
   getBbCapacities: function(technology,callback) {
     return Configuration.distinct('smMode.'+technology+'.bbCapacity', callback);
   },
+  getAllConfigurations: function(callback){
+    return Configuration.find(callback);
+  }
 }

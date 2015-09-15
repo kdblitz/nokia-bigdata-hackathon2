@@ -3,59 +3,10 @@
     <h3>Visual Representation</h3>
   </div>
   <div class = "main-output-visual">
-    <div class = "col-md-4 visual-1" ng-show="displayResult.displayObject.sm1.enabled">
-      <div>
-        <div>
-          <button type="button" class="btn btn-md btn-semi-block rounded-corners inset-borders">Opt. PDU</button>
-          <button type="button" class="btn btn-md btn-semi-block rounded-corners inset-borders pull-right">Opt. TRS ext</button>
-        </div>
-        <div class="div-fsmf-button">
-          <button type="button" class="btn btn-md btn-block rounded-corners outset-borders"
-          ng-show="displayResult.displayObject.sm1.fsmf.enabled"
-          ng-bind="displayResult.displayObject.sm1.fsmf.strval"></button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block outset-borders"
-          ng-show="displayResult.displayObject.sm1.fbbx1.enabled"
-          ng-bind="displayResult.displayObject.sm1.fbbx1.strval"></button>
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block inset-borders"
-          ng-hide="displayResult.displayObject.sm1.fbbx1.enabled">empty</button>
-
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block outset-borders pull-right"
-          ng-show="displayResult.displayObject.sm1.fbbx2.enabled"
-          ng-bind="displayResult.displayObject.sm1.fbbx2.strval"></button>
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block inset-borders"
-          ng-hide="displayResult.displayObject.sm1.fbbx2.enabled">empty</button>
-        </div>
-      </div>
+    <div class = "col-md-6 visual-1">
     </div>
-
-    <div class = "col-md-4 visual-1" ng-show="displayResult.displayObject.sm2.enabled">
-      <div>
-        <div>
-          <button type="button" class="btn btn-md btn-semi-block rounded-corners inset-borders">Opt. PDU</button>
-          <button type="button" class="btn btn-md btn-semi-block rounded-corners inset-borders pull-right">Opt. TRS ext</button>
-        </div>
-        <div class="div-fsmf-button">
-          <button type="button" class="btn btn-md btn-block rounded-corners outset-borders"
-          ng-show="displayResult.displayObject.sm2.fsmf.enabled"
-          ng-bind="displayResult.displayObject.sm2.fsmf.strval"></button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block outset-borders"
-          ng-show="displayResult.displayObject.sm2.fbbx1.enabled"
-          ng-bind="displayResult.displayObject.sm2.fbbx1.strval"></button>
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block inset-borders"
-          ng-hide="displayResult.displayObject.sm2.fbbx1.enabled">empty</button>
-
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block outset-borders pull-right"
-          ng-show="displayResult.displayObject.sm2.fbbx2.enabled"
-          ng-bind="displayResult.displayObject.sm2.fbbx2.strval"></button>
-          <button type="button" class="btn btn-md rounded-corners btn-semi-block inset-borders"
-          ng-hide="displayResult.displayObject.sm2.fbbx1.enabled">empty</button>
-        </div>
-      </div>
+    <div class = "col-md-6 visual-2">
     </div>
   </div>
-  <!-- This is the image part. {{displayResult.displayObject}} -->
+  This is the image part. {{displayResult.displayObject}}
 </div>

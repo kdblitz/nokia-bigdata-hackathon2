@@ -3,35 +3,50 @@ html, body, .container {
   height: 100% !important;
 }
 
-.filter-box {
-  border: 1px solid rgba(0,201,255,.6);;
+.filters{
+  height: 100%;
 }
 
-.btn-transparent {
-  background: transparent;
+/*row-technologies and row-system-module % sum must equal 100%*/
+.row-technologies{
+  height: 45%;
+}
+
+.row-system-module{
+  height: 55%;
+}
+
+.configurations {
+  height: 100%;
 }
 
 .system-module {
+  background-color: lightblue;
   text-align: center;
-  padding: 5px;
+  height: 100%;
 }
 
 .system-module .sm-box {
-  border-radius: 10px;
-  border: 2px solid rgba(0,201,255,.6);;
+  background-color: lightgrey;
+  border-radius: 15px;
+  border: 1px solid;
+  font-size:14px;
+  margin: 0 auto;
+  width: 300px;
 }
 
 .system-module .extension {
   margin-top: 10%;
-  margin-bottom: 5%;
-  padding: 1px;
+  margin-bottom: 10%;
   width: 100%;
 }
 
-
-
 .system-module .dropdown-menu {
   margin-top: 5%;
+}
+
+.technologies {
+  height: 100%;
 }
 
 .main-output {
@@ -41,35 +56,12 @@ html, body, .container {
 }
 
 .visual-1 {
-  background-color: lightblue;
-  width: 45%;
-  padding: 1%;
-  padding-left: 5%;
-  padding-right: 5%;
-  border-style: outset;
-  border-width: medium;
-  /*height: 120px;*/
-  margin: 10px;
-  border-radius: 10px;
+  background-color: lightgreen;
+  height: 140px;
 }
 .visual-2 {
   background-color: lightblue;
-  width: 50%;
-  padding: 1%;
-  padding-left: 5%;
-  padding-right: 5%;
-  border: black;
-  /*height: 120px;*/
-  margin: 10px;
-}
-
-.btn-semi-block{
-  width: 48%
-}
-
-.div-fsmf-button{
-  margin-top: 1%;
-  margin-bottom: 1%;
+  height: 140px;
 }
 
 table {
@@ -116,39 +108,4 @@ tbody td, thead th {
 .table-description{
   width: 42%;
   float: left;
-}
-
-.rounded-corners{
-  border-radius: 5px;
-}
-
-.dashed-borders{
-  border: grey 3px dashed;
-}
-
-.outset-borders{
-  border-width:5px;
-  border-style:outset;
-}
-
-.outset-borders2{
-  border-width:4px;
-  border-style:outset;
-}
-
-.inset-borders{
-  border:lightblue;
-  border-width:5px;
-  border-style:inset;
-  background: lightblue;
-}
-
-.custom-borders-1{
-  border:cyan;
-  border-width:4px;
-  border-style:outset;
-}
-
-.greyed-area{
-  background-color: white;
 }

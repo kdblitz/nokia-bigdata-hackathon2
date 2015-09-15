@@ -41,23 +41,18 @@ var filterObject = {
 };
 
 var toggleTechnology = function(technology) {
-  var tech = filterObject.smMode[technology];
-  if (tech.enabled) {
-    angular.forEach(tech.bbCapacity, function(value, key) {
-      tech.bbCapacity[key] = '';
-    }
-  )}
-  tech.enabled = !tech.enabled;
+  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
-  $scope.getConfigurations = ConfigurationService.getConfigurations();
   $scope.toggleTechnology = toggleTechnology;
   $scope.filterObject = filterObject;
 
-  $scope.displaySMMode = function(smMode){
-    return displaySMMode(smMode);
-  }
+  ConfigurationService.getConfigurations().then(function(response) {
+    $scope.getConfigurations = response.data;
+  }, function(err) {
+    alert("error");
+  });
 
   $scope.displaySMDeployment = function(smDeployment,index){
     return displaySMDeployment(smDeployment,index);
@@ -72,9 +67,6 @@ app.controller('FilterController', function($scope, ConfigurationService){
     $scope.displayResult.enabled = true;
     $scope.displayResult.displayObject = displayObject(result);
   }
-
-  var configurations = ConfigurationService.getConfigurations();
-  var configLen = configurations.length;
 
   var bbCapacityValues = {
     lte: [0, 1, 2, 3],
@@ -262,6 +254,7 @@ function displayObject(result) {
   constructDisplayObjectSM(displayObject.sm1, result.smDeployment[0]);
   constructDisplayObjectSM(displayObject.sm2, result.smDeployment[1]);
 
+  console.log(displayObject);
   return displayObject;
 }
 

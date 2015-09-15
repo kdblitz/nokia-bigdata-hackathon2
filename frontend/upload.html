@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="configurationSelector">
+  <head>
+    <meta charset="utf8">
+    <title>Upload Page</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body>
+    <div ng-controller="uploadCtrl">
+        <input type="file" file-model="myFile"/>
+        <button ng-click="uploadFile()">upload me</button>
+    </div>
+    <script src="js/angular.1.2.20.min.js"></script>
+    <script src="js/dev/configuration-service.js"></script>
+    <script src="js/dev/upload.js"></script>
+    <script src="js/dev/main.js"></script>
+  </body>
+</html>

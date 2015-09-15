@@ -8,7 +8,7 @@
 <body>
   <div class="container-fluid" ng-controller="FilterController">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 filters">
         <uploaded-configurations-panel></uploaded-configurations-panel>
         <div class="row">
           <div class="col-md-12">
@@ -18,13 +18,15 @@
                 Configuration Filters
               </div>
               <div class="panel-body">
-                <h6>RADIO ACCESS TECHNOLOGY</h6>
-                <div class="col-md-12 filter-box well">
-                  <technologies></technologies>
+                <div class="row-technologies">
+                  <div class="col-md-12 technologies">
+                    <h4>RAT</h4>
+                    <technologies></technologies>
+                  </div>
                 </div>
-                <h6>DEPLOYMENTS</h6>
-                <div class="col-md-12 filter-box well">
-                  <div class="col-md-6 system-module">
+                <div class="row-system-module">
+                  <div class="col-md-12 system-module">
+                    <h4>System Module Configuration</h4>
                     <system-module deployment='0'></system-module>
                   </div>
                   <div class="col-md-6 system-module">
@@ -44,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 configurations">
         <div class="panel panel-info">
           <div class="panel-heading">
             <span class="glyphicon glyphicon-search"></span>
@@ -61,11 +63,9 @@
   <script src="js/jquery.1.11.3.min.js"></script>
   <script src="js/bootstrap.3.3.5.min.js"></script>
   <script src="js/angular.1.2.20.min.js"></script>
-  <script src="js/angular-strap.min.js"></script>
-  <script src="js/angular-strap.tpl.min.js"></script>
   <script src="js/dev/mock-data.js"></script>
   <script src="js/dev/configuration-service.js"></script>
-  <script src="js/dev/main.js"></script>
   <script src="js/dev/upload.js"></script>
+  <script src="js/dev/main.js"></script>
 </body>
 </html>
