@@ -1,16 +1,16 @@
   <div class="col-md-4">
     <div>
-      <button class="btn btn-md" ng-class="{'active' : technologies.lte}" ng-click="toggleTechnology('lte')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[technologies.lte]"></span> LTE</button>
+      <button class="btn btn-md" ng-class="{'active' : technologies.lte}" ng-click="toggleTechnology('lte')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.lte.enabled]"></span> LTE</button>
     </div>
   </div>
   <div class="col-md-4">
     <div>
-      <button class="btn btn-md" ng-class="{'active' : technologies.wcdma}" ng-click="toggleTechnology('wcdma')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[technologies.wcdma]"></span> WCDMA</button>
+      <button class="btn btn-md" ng-class="{'active' : technologies.wcdma}" ng-click="toggleTechnology('wcdma')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.wcdma.enabled]"></span> WCDMA</button>
     </div>
   </div>
   <div class="col-md-4">
     <div>
-      <button class="btn btn-md" ng-class="{'active' : technologies.gsm}" ng-click="toggleTechnology('gsm')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[technologies.gsm]"></span> GSM</button>
+      <button class="btn btn-md" ng-class="{'active' : technologies.gsm}" ng-click="toggleTechnology('gsm')"><span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.gsm.enabled]"></span> GSM</button>
     </div>
   </div>
 

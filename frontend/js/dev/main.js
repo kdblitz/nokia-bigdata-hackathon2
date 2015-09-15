@@ -60,18 +60,11 @@ var filterObject = {
   ]
 };
 
-var technologies = {
-  lte: false,
-  wcdma: false,
-  gsm: false
-}
-
 var toggleTechnology = function(technology) {
-  technologies[technology] = !technologies[technology];
+  filterObject.smMode[technology].enabled = !filterObject.smMode[technology].enabled;
 };
 
 app.controller('FilterController', function($scope, ConfigurationService){
-  $scope.technologies = technologies;
   $scope.toggleTechnology = toggleTechnology;
   $scope.filterObject = filterObject;
 
