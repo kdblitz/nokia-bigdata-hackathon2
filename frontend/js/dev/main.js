@@ -6,13 +6,13 @@ var filterObject = {
   configId: '',
   smMode: {
     gsm: {
-      enabled: '',
+      enabled: false,
       bbCapacity: {
         trx: ''
       }
     },
     lte: {
-      enabled: '',
+      enabled: false,
       bbCapacity: {
         rcs: '',
         bcs: '',
@@ -20,7 +20,7 @@ var filterObject = {
       }
     },
     wcdma: {
-      enabled: '',
+      enabled: false,
       bbCapacity: {
         su: '',
       }
@@ -34,11 +34,11 @@ var filterObject = {
       extension:[
         {
           technology: '',
-          fbbx: null
+          fbbx: ''
         },
         {
           technology: '',
-          fbbx: null
+          fbbx: ''
         }
       ]
     },
