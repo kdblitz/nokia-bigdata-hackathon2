@@ -34,11 +34,11 @@ var filterObject = {
       extension:[
         {
           technology: '',
-          fbbx: null
+          fbbx: ''
         },
         {
           technology: '',
-          fbbx: null
+          fbbx: ''
         }
       ]
     },
@@ -108,15 +108,15 @@ app.controller('FilterController', function($scope, ConfigurationService){
   var allCards = "All cards";
   $scope.extensionOptions = [noCard, allCards, 'FBBA', 'FBBC'];
   $scope.setSelectedExtension = function(deployment, extension, card) {
+    if (card === allCards) {
+      card = '';
+    }
     $scope.filterObject.smDeployment[deployment].extension[extension].fbbx = card;
   };
   $scope.getSelectedExtension = function(deployment, extension) {
     var selectedCard = $scope.filterObject.smDeployment[deployment].extension[extension].fbbx;
     if (selectedCard === '') {
       selectedCard = allCards;
-    }
-    else if (selectedCard === null) {
-      selectedCard = noCard;
     }
     return selectedCard;
   };
@@ -142,7 +142,15 @@ app.directive('technologies', function() {
 app.directive('systemModule', function() {
   return {
     restrict: 'E',
-    templateUrl: 'systemModule.html'
+    scope: {
+      deployment: "="
+    },
+    templateUrl: 'systemModule.html',
+    link: function(scope) {
+      scope.getSelectedExtension = scope.$parent.getSelectedExtension;
+      scope.setSelectedExtension = scope.$parent.setSelectedExtension;
+      scope.extensionOptions = scope.$parent.extensionOptions;
+    }
   };
 });
 
