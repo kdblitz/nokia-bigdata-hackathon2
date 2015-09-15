@@ -136,6 +136,11 @@ tbody td, thead th {
   border-style:outset;
 }
 
+.outset-borders-select{
+  border-width:2px;
+  border-style:outset;
+}
+
 .inset-borders{
   border:lightblue;
   border-width:5px;
