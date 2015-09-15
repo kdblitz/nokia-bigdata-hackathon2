@@ -8,7 +8,7 @@
 <body>
   <div class="container-fluid" ng-controller="FilterController">
     <div class="row">
-      <div class="col-md-4 filters">
+      <div class="col-md-4">
         <uploaded-configurations-panel></uploaded-configurations-panel>
         <div class="row">
           <div class="col-md-12">
@@ -18,19 +18,18 @@
                 Configuration Filters
               </div>
               <div class="panel-body">
-                <div class="row-technologies">
-                  <div class="col-md-12 technologies">
-                    <h4>RAT</h4>
-                    <technologies></technologies>
-                  </div>
+                <h6>RADIO ACCESS TECHNOLOGY</h6>
+                <div class="col-md-12 filter-box well">
+                  <technologies></technologies>
                 </div>
-                <div class="row-system-module">
-                  <div class="col-md-12 system-module">
-                    <h4>System Module Configuration</h4>
+                <h6>DEPLOYMENTS</h6>
+                <div class="col-md-12 filter-box well">
+                  <div class="col-md-6 system-module">
                     <system-module deployment='0'></system-module>
-                    <system-module deployment='1'></system-module>
-                    <br/>
-                    <button class="btn-sm btn-secondary" title="Add Deployment"><span class="glyphicon glyphicon-plus"></span></button>
+                  </div>
+                  <div class="col-md-6 system-module">
+                    <button class="btn-sm btn-success pull-right" title="Add Deployment"><span class="glyphicon glyphicon-plus"></span></button>
+                    <system-module deployment='1' ng-hide='true'></system-module>
                   </div>
                 </div>
               </div>
@@ -38,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8 configurations">
+      <div class="col-md-8">
         <div class="panel panel-info">
           <div class="panel-heading">
             <span class="glyphicon glyphicon-search"></span>

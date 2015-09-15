@@ -3,50 +3,35 @@ html, body, .container {
   height: 100% !important;
 }
 
-.filters{
-  height: 100%;
+.filter-box {
+  border: 1px solid rgba(0,201,255,.6);;
 }
 
-/*row-technologies and row-system-module % sum must equal 100%*/
-.row-technologies{
-  height: 45%;
-}
-
-.row-system-module{
-  height: 55%;
-}
-
-.configurations {
-  height: 100%;
+.btn-transparent {
+  background: transparent;
 }
 
 .system-module {
-  background-color: lightblue;
   text-align: center;
-  height: 100%;
+  padding: 5px;
 }
 
 .system-module .sm-box {
-  background-color: lightgrey;
-  border-radius: 15px;
-  border: 1px solid;
-  font-size:14px;
-  margin: 0 auto;
-  width: 300px;
+  border-radius: 10px;
+  border: 2px solid rgba(0,201,255,.6);;
 }
 
 .system-module .extension {
   margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+  padding: 1px;
   width: 100%;
 }
 
+
+
 .system-module .dropdown-menu {
   margin-top: 5%;
-}
-
-.technologies {
-  height: 100%;
 }
 
 .main-output {
