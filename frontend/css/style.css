@@ -13,23 +13,24 @@ html, body, .container {
 
 .system-module {
   text-align: center;
-  padding: 5px;
+  padding: 3px;
+  font-size: 12px;
 }
 
 .system-module .sm-box {
   border-radius: 10px;
-  border: 2px solid rgba(0,201,255,.6);;
+  border: 2px solid rgba(0,201,255,.6);
 }
 
-.system-module .extension {
-  margin-top: 10%;
-  margin-bottom: 5%;
-  padding: 1px;
+.system-module .dropdown-toggle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 3px;
   width: 100%;
 }
 
 .system-module .dropdown-menu {
-  margin-top: 5%;
+  margin-top: 7px;
 }
 
 .main-output {

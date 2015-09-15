@@ -2,17 +2,17 @@
 
 var app = angular.module('configurationSelector');
 
+var anyCard = 'Any';
 var defaultDeployment = {
   extension:[
     {
-      fbbx: 'Any Card'
+      fbbx: anyCard
     },
     {
-      fbbx: 'Any Card'
+      fbbx: anyCard
     }
   ]
 };
-
 var filterObject = {
   configId: '',
   smMode: {
@@ -80,7 +80,6 @@ app.controller('FilterController', function($scope, ConfigurationService){
     gsm: [0, 24]
   };
 
-  var anyCard = 'Any Card';
   $scope.extensionOptions = [anyCard, 'FBBA', 'FBBC'];
   $scope.deployments = 1;
   $scope.setSelectedExtension = function(deployment, extension, card) {
@@ -196,7 +195,7 @@ function isMatchingExtensions(filterExtensions,dataExtensions) {
   for (var j = 0; j < filterExtensions.length; j++) {
     var filterExtension = filterExtensions[j];
     var dataExtension = dataExtensions[j];
-    if (filterExtension.fbbx != 'Any Card') {
+    if (filterExtension.fbbx != anyCard) {
       if (dataExtension == undefined) {
         return false;
       }
