@@ -4,7 +4,7 @@ app.directive('uploadedConfigurationsPanel', function() {
   return {
     templateUrl: 'uploadPanel.html',
     restrict:'E',
-    controller: function($scope, $modal, fileUpload) {
+    controller: function($scope, $modal) {
       $scope.showUploadModal = function() {
         var modalInstance = $modal.open({
           animation: true,
@@ -17,6 +17,8 @@ app.directive('uploadedConfigurationsPanel', function() {
             chosenFile = uploadButton.val(),
             label = uploadButton.parents('.input-group').find(':text');
           label.val(chosenFile);
+
+          $('#uploadButton').prop('disabled', false);
         });
       };
     }

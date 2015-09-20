@@ -2,22 +2,22 @@
   <button type="button" class="close"
     ng-click="cancel()">&times;
   </button>
-  <h3 class="modal-title"><span class="glyphicon glyphicon-upload"></span> Upload configuration</h4>
+  <h3 class="modal-title"><span class="glyphicon glyphicon-upload"></span> Upload Configurations File</h4>
 </div>
-<div class="modal-body">
-  <form role="form" id="upload-form" name="uploadForm">
-    <!--<input type="file" class="form-control" file-model="myFile"/>-->
+<form role="form" id="upload-form" name="uploadForm">
+  <div class="modal-body">
     <div class="input-group">
       <span class="input-group-btn">
         <span class="btn btn-primary btn-file">
-          Browse <input type="file" file-model="myFile">
+          <span class="glyphicon glyphicon-file"></span> Browse&hellip; <input type="file" file-model="myFile" accept=".csv" required>
         </span>
       </span>
       <input type="text" class="form-control" placeholder="Upload a csv file" readonly>
     </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-primary" ng-click="uploadFile()">Upload file</button>
-  <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
-</div>
+  </div>
+  <div class="modal-footer">
+    <button id="uploadButton" type="button" class="btn btn-primary"
+      disabled="disabled" ng-click="uploadFile()">Upload file</button>
+    <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+  </div>
+</form>
