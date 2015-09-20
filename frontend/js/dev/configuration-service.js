@@ -1,5 +1,5 @@
 'use strict';
-angular.module('configurationSelector',['mgcrea.ngStrap','ngAnimate'])
+angular.module('configurationSelector',['ui.bootstrap','ngAnimate'])
   .service('ConfigurationService', function($http) {
     return {
       getConfigurations: function() {

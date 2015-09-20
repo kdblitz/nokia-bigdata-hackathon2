@@ -84,7 +84,6 @@ app.controller('FilterController', function($scope, $animate, ConfigurationServi
 
   ConfigurationService.getBbCapacityValues('lte-rcs').then(function(response) {
     _.each(response.data,function(value) {
-      console.log(value+"!");
       bbCapacityValues.lte.rcs.push(value);
     });
   }, function(err) {

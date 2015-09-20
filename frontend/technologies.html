@@ -4,8 +4,9 @@
     <span class="glyphicon" ng-class="{true : 'glyphicon-check' , false : 'glyphicon-unchecked'}[filterObject.smMode.lte.enabled]"></span>
     LTE
   </button>
-  <span ng-show="filterObject.smMode.lte.enabled" class="animate-show-hide">
-    <select ng-model="filterObject.smMode.lte.bbCapacity.rcs" class="btn-xs outset-borders-select"
+  <input class="form-control floating-label" type="text" value="test" placeholder="dummy text"></input>
+  <span ng-show="filterObject.smMode.lte.enabled" class="animate-show-hide material">
+    <select ng-model="filterObject.smMode.lte.bbCapacity.rcs" class="btn-xs material"
       ng-disabled="!filterObject.smMode.lte.enabled" ng-change="clearDisplayData();"
       ng-class="{'disabled': !filterObject.smMode.lte.enabled,
         'btn-primary': filterObject.smMode.lte.enabled}">
