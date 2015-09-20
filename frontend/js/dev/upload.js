@@ -11,15 +11,6 @@ app.directive('uploadedConfigurationsPanel', function() {
           templateUrl: 'uploadModal.html',
           controller: 'UploadConfigCtrl',
         });
-
-        $(document).on('change', '.btn-file :file', function() {
-          var uploadButton = $(this),
-            chosenFile = uploadButton.val(),
-            label = uploadButton.parents('.input-group').find(':text');
-          label.val(chosenFile);
-
-          $('#uploadButton').prop('disabled', false);
-        });
       };
     }
   };
@@ -29,13 +20,41 @@ app.controller('UploadConfigCtrl', function($scope, $modalInstance, fileUpload) 
   $scope.uploadFile = function() {
     var file = $scope.myFile
     var uploadUrl = '/api/upload';
-    fileUpload.uploadFileToUrl(file, uploadUrl);
-    $modalInstance.close();
+    $('#uploadButton').prop('disabled', true);
+    fileUpload.uploadFileToUrl(file, uploadUrl).then(
+      function(json) {
+        $modalInstance.close();
+        // $alert(
+        //   {title:'Upload complete :)',
+        //   content:json.message,
+        //   placement:'top-right',
+        //   type: (json.status === 'success')? json.status:'warning',
+        //   show:true
+        // });
+      }, function(json) {
+      //   $alert(
+      //     {title:'Upload failed :(',
+      //     content:'Something is went wrong during the upload process.',
+      //     placement:'top-right',
+      //     type: 'danger',
+      //     show:true
+      //   });
+      });
   };
 
   $scope.cancel = function() {
     $modalInstance.dismiss('cancelled');
   }
+
+  $(document).on('change', '.btn-file :file', function() {
+    var uploadButton = $(this),
+      chosenFile = uploadButton.val(),
+      label = uploadButton.parents('.input-group').find(':text');
+    label.val(chosenFile);
+
+    $('#uploadButton').prop('disabled', false);
+  });
+
 });
 
 app.directive('fileModel', function ($parse) {
@@ -59,25 +78,9 @@ app.service('fileUpload', function ($http) {
     var fd = new FormData();
     fd.append('file', file);
     console.log(fd);
-    $http.post(uploadUrl, fd, {
+    return $http.post(uploadUrl, fd, {
       transformRequest: angular.identity,
       headers: {'Content-Type': undefined}
-    }).success(function(json){
-    //   $alert(
-    //     {title:'Upload complete :)',
-    //     content:json.message,
-    //     placement:'top-right',
-    //     type: (json.status === 'success')? json.status:'warning',
-    //     show:true
-    //   });
-    }).error(function(){
-    //   $alert(
-    //     {title:'Upload failed :(',
-    //     content:'Something is went wrong during the upload process.',
-    //     placement:'top-right',
-    //     type: 'danger',
-    //     show:true
-    //   });
     });
   };
 });
